@@ -1,0 +1,2 @@
+# impactont
+Impact Ontology
