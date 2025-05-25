@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://purl.org/impact-ontology#"
+     xml:base="http://purl.org/impact-ontology"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:terms="http://purl.org/dc/terms/"
+	 xmlns:prov="http://www.w3.org/ns/prov#">
+	 
+    <owl:Ontology rdf:about="http://purl.org/impact-ontology">
+        <terms:title xml:lang="en">Impact Ontology</terms:title>
+		<terms:description xml:lang="en">An ontology for describing how events impact things.</terms:description>
+    </owl:Ontology>
+
+	<owl:Class rdf:about="#Thing">
+		<rdfs:subClassOf rdf:resource="owl:thing"/>
+		<rdfs:comment>Thing extends owl:thing with the property of 'hasState'.</rdfs:comment>
+	</owl:Class>
+
+	<owl:ObjectProperty rdf:about="#hasState">
+		<owl:inverseOf rdf:resource="#isStateOf"/>
+		<rdfs:domain rdf:resource="#Thing"/>
+		<rdfs:range rdf:resource="#State"/>
+	</owl:ObjectProperty>
+
+    <!-- #State -->
+    <owl:Class rdf:about="#State">
+		<rdfs:label xml:lang="en">State</rdfs:label>
+		<rdfs:subClassOf rdf:resource="owl:thing"/>
+		<skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The condition of a thing at a specific point in time, expressed in terms of one or more indicator-value pairs.</skos:definition>        
+    </owl:Class>
+
+	<owl:ObjectProperty rdf:about="#hasTemporalLocation">
+		<rdfs:domain rdf:resource="#State"/>
+		<rdfs:range rdf:resource="#TemporalLocation"/>
+	</owl:ObjectProperty>
+
+   <!-- #TemporalLocation -->
+    <owl:Class rdf:about="#TemporalLocation">
+		<rdfs:subClassOf rdf:resource="owl:thing"/>
+		<rdfs:label xml:lang="en">Temporal Location</rdfs:label>   
+        <rdfs:comment xml:lang="en">TODO.</rdfs:comment>
+    </owl:Class>
+
+    <!-- #hasModality -->
+    <owl:DatatypeProperty rdf:about="#hasModality">
+        <rdfs:domain rdf:resource="#State"/>
+		<rdfs:range>
+			<rdfs:Datatype>
+				<owl:oneOf rdf:parseType="Collection">
+					<rdf:Literal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">counterfactual</rdf:Literal>
+					<rdf:Literal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">real</rdf:Literal>
+				</owl:oneOf>
+			</rdfs:Datatype>
+		</rdfs:range>		
+    </owl:DatatypeProperty>
+
+  	<owl:ObjectProperty rdf:about="#isDefinedByIndicator">
+		<owl:inverseOf rdf:resource="#definesState"/>
+		<rdfs:domain rdf:resource="#State"/>
+		<rdfs:range rdf:resource="#Indicator"/>
+	</owl:ObjectProperty>
+    
+    <!-- #impacts -->
+    <owl:ObjectProperty rdf:about="#impacts">
+        <owl:inverseOf rdf:resource="#isImpactedBy"/>
+        <rdfs:domain rdf:resource="#Event"/>
+        <rdfs:range rdf:resource="#Thing"/>
+    </owl:ObjectProperty>
+
+    <!-- #Event -->
+    <owl:Class rdf:about="#Event">
+        <rdfs:label xml:lang="en">Event</rdfs:label>	
+		<rdfs:subClassOf rdf:resource="owl:thing"/>
+        <owl:equivalentClass rdf:resource="http://purl.org/dc/dcmitype/Event"/>
+        <owl:equivalentClass rdf:resource="http://www.w3.org/ns/prov#InstantaneousEvent"/>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A change in the state of a impactont:Thing.</skos:definition>
+		<rdfs:comment>An Event may comprise other Events. TODO: In such case, what would be the difference between an Event and a Process? Add a requirement to Process for stipulating the interactions/interrelations between events?</rdfs:comment>	
+    </owl:Class>
+
+    <owl:ObjectProperty rdf:about="#comprisesEvents">
+        <rdfs:domain rdf:resource="#Event"/>
+        <rdfs:range rdf:resource="#Event"/>
+    </owl:ObjectProperty>
+    
+	<!-- #Impact(n) -->
+    <owl:Class rdf:about="#Impact(n)">
+        <rdfs:subClassOf rdf:resource="#Event"/>
+		<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Impact(n)</rdfs:label>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An event with an identifiable provenance.</rdfs:comment>
+    </owl:Class>
+	
+	<owl:ObjectProperty rdf:about="#hasStateA">
+		<rdfs:domain rdf:resource="#Event"/>
+		<rdfs:domain rdf:resource="#Impact"/>
+        <rdfs:range rdf:resource="#State"/>
+    </owl:ObjectProperty>	
+	
+	<owl:ObjectProperty rdf:about="#hasStateB">
+		<rdfs:domain rdf:resource="#Event"/>
+		<rdfs:domain rdf:resource="#Impact"/>
+        <rdfs:range rdf:resource="#State"/>
+    </owl:ObjectProperty>	
+	
+    <!-- #hasProvenance -->
+    <owl:ObjectProperty rdf:about="#hasProvenance">
+        <rdfs:domain rdf:resource="#State"/>
+		<rdfs:domain rdf:resource="#Impact"/>
+        <rdfs:range rdf:resource="#Event"/>
+    </owl:ObjectProperty>
+
+    <!-- #Indicator -->
+    <owl:Class rdf:about="#Indicator">
+		<rdfs:subClassOf rdf:resource="owl:thing"/>
+        <rdfs:label>Indicator</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A convention for indicating the state of a thing.</skos:definition>
+		<rdfs:comment>TODO: Must have a description and a unit of measure. Can optionally have a rationale.</rdfs:comment>
+    </owl:Class>
+
+    <!-- #Process -->
+    <owl:Class rdf:about="#Process">
+		<rdfs:subClassOf rdf:resource="owl:thing"/>
+        <rdfs:label>Process (n)</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A series of interrelated or interacting events.</skos:definition>
+    </owl:Class>
+
+<!--TODO: Disjoint classes.-->
+
+	<owl:NamedIndividual rdf:ID="ElectricityDistributionInfrastructureOfRiversideTown">
+        <rdf:type rdf:resource="#Thing"/>
+    </owl:NamedIndividual>	
+	
+	<owl:NamedIndividual rdf:ID="FloodOfMarch2025">
+        <rdf:type rdf:resource="#Event"/>
+    </owl:NamedIndividual>	
+	
+	<owl:NamedIndividual rdf:ID="ImpactOfFloodOfMarch2025OnRiversideTownEDI">
+        <rdf:type rdf:resource="#Impact"/>
+		<hasProvenance rdf:resource="#FloodOfMarch2025"/>
+		<hasStateA rdf:resource="#StateBeforeFlood"/>
+		<hasStateB rdf:resource="#StateAfterFlood"/>
+    </owl:NamedIndividual>		
+	
+	<owl:NamedIndividual rdf:ID="StateBeforeFlood">
+        <rdf:type rdf:resource="#State"/>
+		<hasTemporalLocation rdf:resource="#DayBeforeFlood"/>
+		<hasModality rdf:datatype="http://www.w3.org/2001/XMLSchema#string">real</hasModality>
+		<isDefinedByIndicator rdf:resource="#EDIStateIndicator"/>
+		<hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100</hasValue>
+    </owl:NamedIndividual>		
+	
+	<owl:NamedIndividual rdf:ID="StateAfterFlood">
+        <rdf:type rdf:resource="#State"/>
+		<hasTemporalLocation rdf:resource="#DayAfterFlood"/>
+		<hasModality rdf:datatype="http://www.w3.org/2001/XMLSchema#string">real</hasModality>
+		<isDefinedByIndicator rdf:resource="#EDIStateIndicator"/>
+		<hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">32.4</hasValue>
+    </owl:NamedIndividual>		
+
+	<owl:NamedIndividual rdf:ID="DayBeforeFlood">
+        <rdf:type rdf:resource="#TemporalLocation"/>
+		<hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-13T09:00:00.000Z</hasValue>
+    </owl:NamedIndividual>		
+
+	<owl:NamedIndividual rdf:ID="DayAfterFlood">
+        <rdf:type rdf:resource="#TemporalLocation"/>
+		<hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-15T09:00:00.000Z</hasValue>
+    </owl:NamedIndividual>	
+	
+	<owl:NamedIndividual rdf:ID="EDIStateIndicator">
+        <rdf:type rdf:resource="#Indicator"/>
+		<hasDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Indicator for the state of Riverside Town's electricity distribution infrastructure, expressed as the percentage of connections that are 'live'.</hasDefinition>
+		<hasRationale rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TODO.</hasRationale>
+		<hasUnitOfMeasure rdf:datatype="http://www.w3.org/2001/XMLSchema#string">percentage</hasUnitOfMeasure>
+    </owl:NamedIndividual>	
+
+</rdf:RDF>
+
+
