@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://purl.org/impact-ontology#"
-     xml:base="http://purl.org/impact-ontology/example"
+<rdf:RDF xmlns="https://w3id.org/impactont#"
+     xml:base="https://w3id.org/impactont/example"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
@@ -8,27 +8,27 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
 
     <!-- Import the main ontology -->
-    <owl:Ontology rdf:about="http://purl.org/impact-ontology/example">
-        <owl:imports rdf:resource="http://purl.org/impact-ontology"/>
+    <owl:Ontology rdf:about="https://w3id.org/impactont/example">
+        <owl:imports rdf:resource="https://w3id.org/impactont"/>
     </owl:Ontology>
 
     <owl:NamedIndividual rdf:about="#ElectricityDistributionInfrastructureOfRiversideTown">
-        <rdf:type rdf:resource="http://purl.org/impact-ontology#Thing"/>
+        <rdf:type rdf:resource="https://w3id.org/impactont#Thing"/>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="#FloodOfMarch2025">
-        <rdf:type rdf:resource="http://purl.org/impact-ontology#Event"/>
+        <rdf:type rdf:resource="https://w3id.org/impactont#Event"/>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="#ImpactOfFloodOfMarch2025OnRiversideTownEDI">
-        <rdf:type rdf:resource="http://purl.org/impact-ontology#Impact"/>
+        <rdf:type rdf:resource="https://w3id.org/impactont#Impact"/>
         <impact:hasProvenance rdf:resource="#FloodOfMarch2025"/>
         <impact:hasStateA rdf:resource="#StateBeforeFlood"/>
         <impact:hasStateB rdf:resource="#StateAfterFlood"/>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="#StateBeforeFlood">
-        <rdf:type rdf:resource="http://purl.org/impact-ontology#State"/>
+        <rdf:type rdf:resource="https://w3id.org/impactont#State"/>
         <impact:hasTemporalLocation rdf:resource="#DayBeforeFlood"/>
         <impact:hasModality rdf:datatype="http://www.w3.org/2001/XMLSchema#string">real</impact:hasModality>
         <impact:isDefinedByIndicator rdf:resource="#EDIStateIndicator"/>
@@ -36,7 +36,7 @@
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="#StateAfterFlood">
-        <rdf:type rdf:resource="http://purl.org/impact-ontology#State"/>
+        <rdf:type rdf:resource="https://w3id.org/impactont#State"/>
         <impact:hasTemporalLocation rdf:resource="#DayAfterFlood"/>
         <impact:hasModality rdf:datatype="http://www.w3.org/2001/XMLSchema#string">real</impact:hasModality>
         <impact:isDefinedByIndicator rdf:resource="#EDIStateIndicator"/>
@@ -44,17 +44,17 @@
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="#DayBeforeFlood">
-        <rdf:type rdf:resource="http://purl.org/impact-ontology#TemporalLocation"/>
+        <rdf:type rdf:resource="https://w3id.org/impactont#TemporalLocation"/>
         <impact:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-13T09:00:00.000Z</impact:hasValue>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="#DayAfterFlood">
-        <rdf:type rdf:resource="http://purl.org/impact-ontology#TemporalLocation"/>
+        <rdf:type rdf:resource="https://w3id.org/impactont#TemporalLocation"/>
         <impact:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-15T09:00:00.000Z</impact:hasValue>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="#EDIStateIndicator">
-        <rdf:type rdf:resource="http://purl.org/impact-ontology#Indicator"/>
+        <rdf:type rdf:resource="https://w3id.org/impactont#Indicator"/>
         <impact:hasDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
             Indicator for the state of Riverside Town's electricity distribution infrastructure, expressed as the percentage of connections that are 'live'.
         </impact:hasDefinition>

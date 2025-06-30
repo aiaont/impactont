@@ -1,6 +1,127 @@
 [
   {
-    "@id": "http://purl.org/impact-ontology#Process",
+    "@id": "https://w3id.org/impactont#Indicator",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "TODO: Must have a description and a unit of measure. Can optionally have a rationale."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Indicator"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "owl:Thing"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "A convention for indicating the state of a thing."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/impactont#hasStateB",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "owl:Thing"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/impactont#State"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/impactont#hasTemporalLocation",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/impactont#State"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/impactont#TemporalLocation"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/impactont#Impact",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "An event with an identifiable provenance."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Impact"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "https://w3id.org/impactont#Event"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/impactont#impacts",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/impactont#Event"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/impactont#Thing"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "https://w3id.org/impactont#isImpactedBy"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/impactont#hasState",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/impactont#Thing"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/impactont#State"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "https://w3id.org/impactont#isStateOf"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/impactont#Process",
     "@type": [
       "http://www.w3.org/2002/07/owl#Class"
     ],
@@ -21,30 +142,63 @@
     ]
   },
   {
-    "@id": "http://purl.org/impact-ontology#TemporalLocation",
+    "@id": "https://w3id.org/impactont",
     "@type": [
-      "http://www.w3.org/2002/07/owl#Class"
+      "http://www.w3.org/2002/07/owl#Ontology"
     ],
-    "http://www.w3.org/2000/01/rdf-schema#comment": [
+    "http://purl.org/dc/terms/description": [
       {
         "@language": "en",
-        "@value": "TODO."
+        "@value": "An ontology for describing how events impact things."
       }
+    ],
+    "http://purl.org/dc/terms/title": [
+      {
+        "@language": "en",
+        "@value": "Impact Ontology"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/impactont#comprisesEvents",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/impactont#Event"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/impactont#Event"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/impactont#State",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
         "@language": "en",
-        "@value": "Temporal Location"
+        "@value": "State"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
       {
         "@id": "owl:Thing"
       }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "The condition of a thing at a specific point in time, expressed in terms of one or more indicator-value pairs."
+      }
     ]
   },
   {
-    "@id": "http://purl.org/impact-ontology#Event",
+    "@id": "https://w3id.org/impactont#Event",
     "@type": [
       "http://www.w3.org/2002/07/owl#Class"
     ],
@@ -79,82 +233,42 @@
     ]
   },
   {
-    "@id": "http://purl.org/impact-ontology#State",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#Class"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": [
-      {
-        "@language": "en",
-        "@value": "State"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
-      {
-        "@id": "owl:Thing"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#definition": [
-      {
-        "@value": "The condition of a thing at a specific point in time, expressed in terms of one or more indicator-value pairs."
-      }
-    ]
-  },
-  {
-    "@id": "http://purl.org/impact-ontology#hasStateA",
+    "@id": "https://w3id.org/impactont#hasProvenance",
     "@type": [
       "http://www.w3.org/2002/07/owl#ObjectProperty"
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@id": "http://purl.org/impact-ontology#Event"
+        "@id": "https://w3id.org/impactont#State"
       },
       {
-        "@id": "http://purl.org/impact-ontology#Impact"
+        "@id": "https://w3id.org/impactont#Impact"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://purl.org/impact-ontology#State"
+        "@id": "https://w3id.org/impactont#Event"
       }
     ]
   },
   {
-    "@id": "http://purl.org/impact-ontology",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#Ontology"
-    ],
-    "http://purl.org/dc/terms/description": [
-      {
-        "@language": "en",
-        "@value": "An ontology for describing how events impact things."
-      }
-    ],
-    "http://purl.org/dc/terms/title": [
-      {
-        "@language": "en",
-        "@value": "Impact Ontology"
-      }
-    ]
-  },
-  {
-    "@id": "http://purl.org/impact-ontology#hasModality",
+    "@id": "https://w3id.org/impactont#hasModality",
     "@type": [
       "http://www.w3.org/2002/07/owl#DatatypeProperty"
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@id": "http://purl.org/impact-ontology#State"
+        "@id": "https://w3id.org/impactont#State"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "_:N1166ff01f179409b85f97f7d840f52ae"
+        "@id": "_:N781700399aee4273b82eb63b3e817681"
       }
     ]
   },
   {
-    "@id": "_:N1166ff01f179409b85f97f7d840f52ae",
+    "@id": "_:N781700399aee4273b82eb63b3e817681",
     "@type": [
       "http://www.w3.org/2000/01/rdf-schema#Datatype"
     ],
@@ -162,206 +276,92 @@
       {
         "@list": [
           {
-            "@id": "_:N7ad9dc894ba44824aa0ab16471bab6d8"
+            "@id": "_:N063c18fe151548d5ac247eafaf0d2d19"
           },
           {
-            "@id": "_:Nc0911df2c4aa409689885c830c3d88c6"
+            "@id": "_:N979f5da1a800481590f4468adb7fc6c5"
           }
         ]
       }
     ]
   },
   {
-    "@id": "_:N7ad9dc894ba44824aa0ab16471bab6d8",
+    "@id": "_:N063c18fe151548d5ac247eafaf0d2d19",
     "@type": [
       "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
     ]
   },
   {
-    "@id": "_:Nc0911df2c4aa409689885c830c3d88c6",
+    "@id": "_:N979f5da1a800481590f4468adb7fc6c5",
     "@type": [
       "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
     ]
   },
   {
-    "@id": "http://purl.org/impact-ontology#Impact",
+    "@id": "https://w3id.org/impactont#TemporalLocation",
     "@type": [
       "http://www.w3.org/2002/07/owl#Class"
     ],
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
-        "@value": "An event with an identifiable provenance."
+        "@language": "en",
+        "@value": "TODO."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
-        "@value": "Impact"
+        "@language": "en",
+        "@value": "Temporal Location"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
       {
-        "@id": "http://purl.org/impact-ontology#Event"
-      }
-    ]
-  },
-  {
-    "@id": "http://purl.org/impact-ontology#hasStateB",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
         "@id": "owl:Thing"
       }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "http://purl.org/impact-ontology#State"
-      }
     ]
   },
   {
-    "@id": "http://purl.org/impact-ontology#comprisesEvents",
+    "@id": "https://w3id.org/impactont#hasStateA",
     "@type": [
       "http://www.w3.org/2002/07/owl#ObjectProperty"
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@id": "http://purl.org/impact-ontology#Event"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "http://purl.org/impact-ontology#Event"
-      }
-    ]
-  },
-  {
-    "@id": "http://purl.org/impact-ontology#hasTemporalLocation",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "http://purl.org/impact-ontology#State"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "http://purl.org/impact-ontology#TemporalLocation"
-      }
-    ]
-  },
-  {
-    "@id": "http://purl.org/impact-ontology#hasProvenance",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "http://purl.org/impact-ontology#State"
+        "@id": "https://w3id.org/impactont#Event"
       },
       {
-        "@id": "http://purl.org/impact-ontology#Impact"
+        "@id": "https://w3id.org/impactont#Impact"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://purl.org/impact-ontology#Event"
+        "@id": "https://w3id.org/impactont#State"
       }
     ]
   },
   {
-    "@id": "http://purl.org/impact-ontology#hasState",
+    "@id": "https://w3id.org/impactont#isDefinedByIndicator",
     "@type": [
       "http://www.w3.org/2002/07/owl#ObjectProperty"
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@id": "http://purl.org/impact-ontology#Thing"
+        "@id": "https://w3id.org/impactont#State"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://purl.org/impact-ontology#State"
+        "@id": "https://w3id.org/impactont#Indicator"
       }
     ],
     "http://www.w3.org/2002/07/owl#inverseOf": [
       {
-        "@id": "http://purl.org/impact-ontology#isStateOf"
+        "@id": "https://w3id.org/impactont#definesState"
       }
     ]
   },
   {
-    "@id": "http://purl.org/impact-ontology#isDefinedByIndicator",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "http://purl.org/impact-ontology#State"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "http://purl.org/impact-ontology#Indicator"
-      }
-    ],
-    "http://www.w3.org/2002/07/owl#inverseOf": [
-      {
-        "@id": "http://purl.org/impact-ontology#definesState"
-      }
-    ]
-  },
-  {
-    "@id": "http://purl.org/impact-ontology#impacts",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "http://purl.org/impact-ontology#Event"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "http://purl.org/impact-ontology#Thing"
-      }
-    ],
-    "http://www.w3.org/2002/07/owl#inverseOf": [
-      {
-        "@id": "http://purl.org/impact-ontology#isImpactedBy"
-      }
-    ]
-  },
-  {
-    "@id": "http://purl.org/impact-ontology#Indicator",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#Class"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#comment": [
-      {
-        "@value": "TODO: Must have a description and a unit of measure. Can optionally have a rationale."
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": [
-      {
-        "@value": "Indicator"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
-      {
-        "@id": "owl:Thing"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#definition": [
-      {
-        "@value": "A convention for indicating the state of a thing."
-      }
-    ]
-  },
-  {
-    "@id": "http://purl.org/impact-ontology#Thing",
+    "@id": "https://w3id.org/impactont#Thing",
     "@type": [
       "http://www.w3.org/2002/07/owl#Class"
     ],
