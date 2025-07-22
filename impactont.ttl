@@ -1,0 +1,93 @@
+@prefix : <https://w3id.org/impactont#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://w3id.org/impactont> a owl:Ontology ;
+    dcterms:description "An ontology for describing how events impact things."@en ;
+    dcterms:title "Impact Ontology"@en .
+
+:Process a owl:Class ;
+    rdfs:label "Process" ;
+    rdfs:subClassOf <owl:Thing> ;
+    skos:definition "A series of interrelated or interacting events." .
+
+:comprisesEvents a owl:ObjectProperty ;
+    rdfs:domain :Event ;
+    rdfs:range :Event .
+
+:hasModality a owl:DatatypeProperty ;
+    rdfs:domain :State ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:oneOf ( [ a rdf:Literal ] [ a rdf:Literal ] ) ] .
+
+:hasProvenance a owl:ObjectProperty ;
+    rdfs:domain :Impact,
+        :State ;
+    rdfs:range :Event .
+
+:hasState a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :State ;
+    owl:inverseOf :isStateOf .
+
+:hasStateA a owl:ObjectProperty ;
+    rdfs:domain :Event,
+        :Impact ;
+    rdfs:range :State .
+
+:hasStateB a owl:ObjectProperty ;
+    rdfs:domain <owl:Thing> ;
+    rdfs:range :State .
+
+:hasTemporalLocation a owl:ObjectProperty ;
+    rdfs:domain :State ;
+    rdfs:range :TemporalLocation .
+
+:impacts a owl:ObjectProperty ;
+    rdfs:domain :Event ;
+    rdfs:range :Thing ;
+    owl:inverseOf :isImpactedBy .
+
+:isDefinedByIndicator a owl:ObjectProperty ;
+    rdfs:domain :State ;
+    rdfs:range :Indicator ;
+    owl:inverseOf :definesState .
+
+:Indicator a owl:Class ;
+    rdfs:label "Indicator" ;
+    rdfs:comment "TODO: Must have a description and a unit of measure. Can optionally have a rationale." ;
+    rdfs:subClassOf <owl:Thing> ;
+    skos:definition "A convention for indicating the state of a thing." .
+
+:TemporalLocation a owl:Class ;
+    rdfs:label "Temporal Location"@en ;
+    rdfs:comment "TODO."@en ;
+    rdfs:subClassOf <owl:Thing> .
+
+:Impact a owl:Class ;
+    rdfs:label "Impact" ;
+    rdfs:comment "An event with an identifiable provenance." ;
+    rdfs:subClassOf :Event .
+
+:Thing a owl:Class ;
+    rdfs:comment "Thing extends owl:Thing with the property of 'hasState'." ;
+    rdfs:subClassOf <owl:Thing> .
+
+:Event a owl:Class ;
+    rdfs:label "Event"@en ;
+    rdfs:comment "An Event may comprise other Events. TODO: In such case, what would be the difference between an Event and a Process? Add a requirement to Process for stipulating the interactions/interrelations between events?" ;
+    rdfs:subClassOf <owl:Thing> ;
+    owl:equivalentClass dcmitype:Event,
+        prov:InstantaneousEvent ;
+    skos:definition "A change in the state of a impactont:Thing." .
+
+:State a owl:Class ;
+    rdfs:label "State"@en ;
+    rdfs:subClassOf <owl:Thing> ;
+    skos:definition "The condition of a thing at a specific point in time, expressed in terms of one or more indicator-value pairs." .
+
