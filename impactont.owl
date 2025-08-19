@@ -9,7 +9,7 @@
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:terms="http://purl.org/dc/terms/"
 	 xmlns:prov="http://www.w3.org/ns/prov#"
-	 xmlns:time="http://www.w3.org/2006/time"#>
+	 xmlns:time="http://www.w3.org/2006/time#">
 	 
     <owl:Ontology rdf:about="https://w3id.org/impactont">
         <terms:title xml:lang="en">Impact Ontology</terms:title>
