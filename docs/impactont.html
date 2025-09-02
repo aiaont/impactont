@@ -1,1207 +1,348 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Impact Ontology</title>
-    <style>
-        #pylode {
-            position: fixed;
-            top: 130px;
-            left: -80px;
-            font-size: small;
-            transform: rotate(-90deg);
-            color: grey;
-        }
-        #pylode a {
-            font-size: 2em;
-            font-weight: bold;
-            text-decoration: none;
-            color: #005A9C;
-        }
-        #pylode a:hover {
-            color: #333;
-        }
-        #pylode #p {
-            color: #329545;
-        }
-        #pylode #y {
-            color: #f9cb33;
-        }
-        #pylode #version {
-            font-size: 1.0em;
-        }
-
-        .cardinality {
-            font-style: italic;
-            color: #aa00aa;
-        }
-
-        dl {
-            /*border: 1px solid navy;*/
-            /*padding:5px;*/
-        }
-
-        dt {
-            font-weight: bold;
-            padding: 0;
-        }
-
-        dd {
-            margin-bottom: 10px;
-            padding-top: 7px;
-        }
-
-        #metadata ul,
-        #classes ul {
-            list-style-type: none;
-        }
-
-        #metadata ul li,
-        #classes ul li {
-            margin-left: -40px;
-        }
-
-        ul.hlist {
-            list-style-type: none;
-            border: 1px solid navy;
-            padding:5px;
-            background-color: #F4FFFF;
-        }
-
-        ul.hierarchy {
-            border: 1px solid navy;
-            padding: 5px 25px 5px 25px;
-            background-color: #F4FFFF;
-        }
-
-
-        ul.hlist li {
-            display: inline;
-            margin-right: 10px;
-        }
-
-        .entity {
-            border: 1px solid navy;
-            margin:5px 0 5px 0;
-            padding: 5px;
-        }
-
-        .entity th {
-            width: 150px;
-            vertical-align: top;
-        }
-
-        .entity th,
-        .entity td {
-            padding-bottom: 20px;
-        }
-
-        .entity table th {
-            text-align: left;
-        }
-
-        section#overview img {
-            max-width: 1000px;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            text-align: left
-        }
-        h1, h2, h3 {
-            color: #005A9C; background: white
-        }
-        h1 {
-            font: 170% sans-serif;
-            line-height: 110%;
-        }
-        h2 {
-            font: 140% sans-serif;
-            margin-top:40px;
-        }
-        h3 {
-            font: 120% sans-serif;
-            margin-top: 20px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid navy;
-        }
-        h4 { font: bold 100% sans-serif }
-        h5 { font: italic 100% sans-serif }
-        h6 { font: small-caps 100% sans-serif }
-
-        body {
-            padding: 2em 70px 2em 70px;
-            margin: 0;
-            font-family: sans-serif;
-            color: black;
-            background: white;
-            background-position: top left;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            text-align: justify;
-        }
-
-        section {
-            max-width: 1500px;
-        }
-
-        .figure {
-            margin-bottom: 20px;
-        }
-
-        :link { color: #00C; background: transparent }
-        :visited { color: #609; background: transparent }
-        a:active { color: #C00; background: transparent }
-
-        .sup-c,
-        .sup-op,
-        .sup-fp,
-        .sup-dp,
-        .sup-ap,
-        .sup-p,
-        .sup-ni,
-        .sup-con,
-        .sup-col {
-            cursor:help;
-        }
-
-        .sup-c {
-            color:orange;
-        }
-
-        .sup-op {
-            color:navy;
-        }
-
-        .sup-fp {
-            color:lightskyblue;
-        }
-
-        .sup-dp {
-            color:green;
-        }
-
-        .sup-ap {
-            color:darkred;
-        }
-
-        .sup-p {
-            color:black;
-        }
-
-        .sup-ni {
-            color:brown;
-        }
-
-        .sup-con {
-            color:orange;
-        }
-
-        .sup-col {
-            color:darkred;
-        }
-
-        sup {
-            margin-left: -3px;
-        }
-        code {
-            font-size: large;
-            color: darkred;
-        }
-
-        /* less prominent links for properties */
-        .proplink {
-            color: #336;
-            text-decoration: none;
-        }
-
-#toc {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 2;
-    height: 100%;
-    overflow-y: auto;
-    padding: 10px;
-    border: solid 1px navy;
-    font-size: small;
-    width: 180px;
-}
-#toc h3 {
-    margin-top: 5px;
-}
-
-#toc ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-#toc .first > li {
-    margin-top: 5px;
-}
-
-#toc .second,
-#toc .third {
-    padding-left: 10px;
-}
-
-#content {
-    width: calc(100% - 150px);
-}
-
-.hover_property {
-    cursor: help;
-    text-decoration: none;
-    border-bottom: dashed 1px;
-}
-
-.setclass {
-    list-style-type: none;
-}
-	</style>
-    <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABhklEQVQ4jbWPzStEURjG3yQLirlGKUnKFO45Z+SjmXvnnmthQcpCoVhYmD/AwmJiI3OvZuZc2U3UlKU0/gAslMw9JgvhHxAr2fko7r0jHSsl+TgbTz2Lt5731/MASEiJW9ONml2QyX6rsGalmnT74v8BDf12hxJfpV8d1uwNKUBYszabdFv84L8B9X0rESVmmUup2fme0cVhJWaZHw4NWL1SewEAfDe6H3Dy6Ll456WEJsRZS630MwCAOI20ei5OBpxse5zcBZw8eS4uPpfIuDiCainIg9umBCU0GZzgLZ9Hn31OgoATL+CkLDGB5H1OKj4nFd/FBxUXJ0UZNb4edw/6nLyJXaj5FeCVyPLNIVmYK8TG1IwWb16L1gEACAFV90ftoT8bdOX0EeyY99gxBXZMgRz6qGb1KantAACI0UvE6F5XJqEjpsdURouI0Vt5gGOUkUNnPu7ObGIIMfNaGqDmjDRi9FZldF1lRgYzeqUyeoiY4ag5Iy3RgOYRM8+/M2bG8efsO4hGrpmJseyMAAAAAElFTkSuQmCC" rel="icon" sizes="16x16" type="image/png">
-    <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAC40lEQVRYhe2UT0hUQRzHp6Iss1B3VZKIDbbdfW9mnoi4f3zzjkJQeOgS0SEIb1EWBGGlLLu460zQPQM1unUIIjA6rfpm6ZAhHjoIRVQUFUlEbG+euTsdXG1d3VL3bVD4g+9h+L35fT/8fvN7ADgY9aHY5fpIvK82HO9ysu66wxWOzbkjcekKx0a2ALYA/n2AGi3a6ArFezcidziecQygNhhrcUficjP6PwBqtGijKxy/thnVBePHywYoDsFhl53GV8SEcsTx4usCMLUewTVpc23BNvEzm6Neyf1+KcG2vwqwUjgrOJq2JmHftwmkVBRGTvncFodnbI7vChO/FRznCmHsNM7aHM9Yk7Df5iqsLMw9sMNOK2g+jS4IEz0UJv4iuJZb2RltWnB4UZqH6ioGAgAAGe5vtiZhtzDx7OoRadLmeM7m6IRjhnLMW2Vx1bA5GhAmnhIcz6/xNj4Ujsky8UspwfayjDPjsF2Y6L7N8Vzx/BfP+KPg6LbgSqd8DnfJW2CnbaLhfH5ephpqygJYvQU4Z3P82TLRsDDhUTnmrSq+Y3N0Mg+Xldy/zwEAnLMWZ3pHpNExmfLs/t0dOdVcbT0JeKxUwFP2VljjqiE47Jp53LTXNxhsUZjerTByXWX6VZWRs/4bIQ2ACv+UAomgDzLCISNZxAxZKMhIDjLy1JfsaK+I+eGBUBNk5E2x8RogX/PdcDZUqieWTSh5D6nOVKqfhoycUmlHFFIyu5RXqf7AcQDISCpv/tqbMBqK883RtmpISRoxQyJKPgGn3wNk5NEigDFa6hslqV/Kj+FdBQD0bshIDlKSLlVcoWQo36UhR80BAMB73lulMn0EMpJTqD6qJiOt3mho/8GbkT2BZNgDB/V+RI0fkOrT3kRIVQbaDizJm2hdNbINBxwk5xAj3yEjuV9rZ1iIkgxixkLBA83mz8uCjLwoGwAx0vOnFSy5mtR4VTaAQvVORMnwZgSpzkrV/QmdE2tKe46+MQAAAABJRU5ErkJggg==" rel="icon" sizes="32x32" type="image/png">
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <script id="schema.org" type="application/ld+json">
-[
-  {
-    "@id": "https://w3id.org/impactont",
-    "@type": [
-      "https://schema.org/DefinedTermSet"
-    ],
-    "https://schema.org/description": [
-      {
-        "@language": "en",
-        "@value": "An ontology for describing how events impact things."
-      }
-    ],
-    "https://schema.org/name": [
-      {
-        "@language": "en",
-        "@value": "Impact Ontology"
-      }
-    ]
-  }
-]
-	</script>
-  </head>
-  <body>
-    <div id="content">
-      <div class="section" id="metadata">
-        <h1>Impact Ontology</h1>
-        <h2>Metadata</h2>
-        <dl>
-          <div>
-            <dt>
-              <strong>IRI</strong>
-            </dt>
-            <dd>
-              <code>https://w3id.org/impactont</code>
-            </dd>
-          </div>
-          <div>
-            <dt>
-              <a class="hover_property" href="http://purl.org/dc/terms/title" title="None. Defined in None">Title</a>
-            </dt>
-            <dd><p>Impact Ontology</p></dd>
-          </div>
-          <div>
-            <dt>
-              <a class="hover_property" href="http://purl.org/dc/terms/description" title="None. Defined in None">Description</a>
-            </dt>
-            <dd><p>An ontology for describing how events impact things.</p></dd>
-          </div>
-        </dl>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Impact Ontology — Ontology Documentation</title>
+  <style>
+    :root {
+      --bg: #fff;
+      --fg: #111;
+      --muted: #555;
+      --line: #e5e7eb;
+      --accent: #2563eb;
+      --badge: #0ea5e9;
+      --code-bg: #f3f4f6;
+    }
+    html, body { background: var(--bg); color: var(--fg); font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, sans-serif; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+    header { margin-bottom: 2rem; border-bottom: 1px solid var(--line); padding-bottom: 1rem; }
+    h1 { font-size: 1.75rem; margin: 0 0 .25rem; }
+    .iri { color: var(--muted); word-break: break-all; }
+    .desc { margin-top: .75rem; font-size: 1.05rem; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+    section { border: 1px solid var(--line); border-radius: 8px; padding: 1rem; }
+    h2 { font-size: 1.25rem; margin: 0 0 .5rem; }
+    h3 { font-size: 1.05rem; margin: .5rem 0; }
+    .item { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1rem; }
+    .item:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+    .meta { font-size: .95rem; color: var(--muted); }
+    .kv { display: grid; grid-template-columns: 160px 1fr; gap: .25rem .75rem; margin-top: .5rem; }
+    .kv div.key { color: var(--muted); }
+    code { background: var(--code-bg); padding: .1rem .25rem; border-radius: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: .9em; }
+    .badge { display: inline-block; font-size: .75rem; padding: .1rem .4rem; border-radius: .5rem; background: var(--badge); color: #fff; margin-right: .5rem; }
+    .defblock { border-left: 4px solid var(--badge); padding: .5rem .75rem; background: #f0f9ff; border-radius: 4px; margin: .5rem 0 .75rem; }
+    .comment { margin: .25rem 0; }
+    .section-title { font-weight: 600; margin-top: .25rem; }
+    .prefixes { margin-top: .5rem; font-size: .9rem; }
+    .kv div.key { font-weight: 600; }
+  </style>
+  <meta name="generator" content="codex-enhanced-ontology-renderer" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Impact Ontology</h1>
+<div class="iri">IRI: <code>https://w3id.org/impactont</code></div>      <div class="desc defblock"><span class="badge">Description</span> An ontology for describing how events impact things.</div>
+      <div class="prefixes">
+        Prefixes:
+          <code>:: &lt;https://w3id.org/impactont#&gt;</code><br />
+          <code>dcmitype: &lt;http://purl.org/dc/dcmitype/&gt;</code><br />
+          <code>dcterms: &lt;http://purl.org/dc/terms/&gt;</code><br />
+          <code>ns1: &lt;owl:&gt;</code><br />
+          <code>ns2: &lt;https://w3id.org/&gt;</code><br />
+          <code>owl: &lt;http://www.w3.org/2002/07/owl#&gt;</code><br />
+          <code>prov: &lt;http://www.w3.org/ns/prov#&gt;</code><br />
+          <code>rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</code><br />
+          <code>rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</code><br />
+          <code>skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;</code><br />
       </div>
-      <div class="section" id="classes">
+    </header>
+
+    <section>
+      <h2>Contents</h2>
+      <div class="kv">
+          <div class="key">Classes</div>
+          <div>
+              <a href="#cls--Thing">:Thing</a>,               <a href="#cls--Event">Event</a>,               <a href="#cls--Impact">Impact</a>,               <a href="#cls--Indicator">Indicator</a>,               <a href="#cls--Process">Process</a>,               <a href="#cls--State">State</a>,               <a href="#cls--TemporalLocation">Temporal Location</a>          </div>
+          <div class="key">Properties</div>
+          <div>
+              <a href="#prop--comprisesEvents">:comprisesEvents</a>,               <a href="#prop--hasModality">:hasModality</a>,               <a href="#prop--hasProvenance">:hasProvenance</a>,               <a href="#prop--hasState">:hasState</a>,               <a href="#prop--hasStateA">:hasStateA</a>,               <a href="#prop--hasStateB">:hasStateB</a>,               <a href="#prop--hasTemporalLocation">:hasTemporalLocation</a>,               <a href="#prop--impacts">:impacts</a>,               <a href="#prop--isDefinedByIndicator">:isDefinedByIndicator</a>          </div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section>
         <h2>Classes</h2>
-        <div class="property entity" id="Thing">
-          <h3>Thing
-            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>https://w3id.org/impactont#Thing</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="None. Defined in None">Description</a>
-              </th>
-              <td><p>Thing extends owl:Thing with the property of 'hasState'.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="None. Defined in None">Sub Class Of</a>
-              </th>
-              <td>
-                <a href="owl:Thing">ns2:Thing</a>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inDomainOf" title="None. Defined in None">In Domain Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#hasState">hasState</a>
-                  <sup class="sup-op" title="OWL Object Property">op</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="None. Defined in None">In Range Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#impacts">impacts</a>
-                  <sup class="sup-op" title="OWL Object Property">op</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="State">
-          <h3>State
-            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>https://w3id.org/impactont#State</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="None. Defined in None">Description</a>
-              </th>
-              <td><p>The condition of a thing at a specific point in time, expressed in terms of one or more indicator-value pairs.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inDomainOf" title="None. Defined in None">In Domain Of</a>
-              </th>
-              <td>
-                <ul>
-                  <li>
-                    <span>
-                      <a href="#hasTemporalLocation">hasTemporalLocation</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#hasModality">hasModality</a>
-                      <sup class="sup-dp" title="OWL Datatype Property">dp</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#isDefinedByIndicator">isDefinedByIndicator</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#hasProvenance">hasProvenance</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="None. Defined in None">In Range Of</a>
-              </th>
-              <td>
-                <ul>
-                  <li>
-                    <span>
-                      <a href="#hasState">hasState</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#hasStateA">hasStateA</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#hasStateB">hasStateB</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                </ul>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="TemporalLocation">
-          <h3>Temporal Location
-            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>https://w3id.org/impactont#TemporalLocation</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="None. Defined in None">Description</a>
-              </th>
-              <td>
-                <ul>
-                  <li><p>A point in time is a single time:Instant, while a period in time is defined by two distinct time:Instants (typically using the time:ProperInterval class).</p></li>
-                  <li><p>The point or period in time at or during which a thing occurs, expressed in terms of the OWL-Time ontology.</p></li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="None. Defined in None">In Range Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#hasTemporalLocation">hasTemporalLocation</a>
-                  <sup class="sup-op" title="OWL Object Property">op</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="Event">
-          <h3>Event
-            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>https://w3id.org/impactont#Event</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="None. Defined in None">Description</a>
-              </th>
-              <td>
-                <ul>
-                  <li><p>An Event may comprise other Events.</p></li>
-                  <li><p>A change in the state of an impactont:Thing.</p></li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2002/07/owl#equivalentClass" title="None. Defined in None">Equivalent Class</a>
-              </th>
-              <td>
-                <ul>
-                  <li>
-                    <a href="http://purl.org/dc/dcmitype/Event">dcmitype:Event</a>
-                  </li>
-                  <li>
-                    <a href="http://www.w3.org/ns/prov#InstantaneousEvent">prov:InstantaneousEvent</a>
-                  </li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inDomainOf" title="None. Defined in None">In Domain Of</a>
-              </th>
-              <td>
-                <ul>
-                  <li>
-                    <span>
-                      <a href="#impacts">impacts</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#comprisesEvents">comprisesEvents</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#hasStateA">hasStateA</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#hasStateB">hasStateB</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="None. Defined in None">In Range Of</a>
-              </th>
-              <td>
-                <ul>
-                  <li>
-                    <span>
-                      <a href="#comprisesEvents">comprisesEvents</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#hasProvenance">hasProvenance</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superClassOf" title="None. Defined in None">Super Class Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Impact">Impact</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="Impact">
-          <h3>Impact
-            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>https://w3id.org/impactont#Impact</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="None. Defined in None">Description</a>
-              </th>
-              <td><p>An event with an identifiable provenance.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="None. Defined in None">Sub Class Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Event">Event</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inDomainOf" title="None. Defined in None">In Domain Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#hasProvenance">hasProvenance</a>
-                  <sup class="sup-op" title="OWL Object Property">op</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="Indicator">
-          <h3>Indicator
-            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>https://w3id.org/impactont#Indicator</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="None. Defined in None">Description</a>
-              </th>
-              <td>
-                <ul>
-                  <li><p>Must have a description and a unit of measure. Can optionally have a rationale.</p></li>
-                  <li><p>A convention for indicating the state of a thing.</p></li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="None. Defined in None">In Range Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#isDefinedByIndicator">isDefinedByIndicator</a>
-                  <sup class="sup-op" title="OWL Object Property">op</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="Process">
-          <h3>Process
-            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>https://w3id.org/impactont#Process</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="None. Defined in None">Description</a>
-              </th>
-              <td><p>A series of interrelated or interacting events.</p></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div class="section" id="objectproperties">
-        <h2>Object Properties</h2>
-        <div class="property entity" id="hasState">
-          <h3>has state
-            <sup class="sup-op" title="OWL Object Property">op</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>https://w3id.org/impactont#hasState</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="None. Defined in None">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Thing">Thing</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="None. Defined in None">Range</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#State">State</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="hasTemporalLocation">
-          <h3>has temporal location
-            <sup class="sup-op" title="OWL Object Property">op</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>https://w3id.org/impactont#hasTemporalLocation</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="None. Defined in None">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#State">State</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="None. Defined in None">Range</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#TemporalLocation">TemporalLocation</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="isDefinedByIndicator">
-          <h3>is defined by indicator
-            <sup class="sup-op" title="OWL Object Property">op</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>https://w3id.org/impactont#isDefinedByIndicator</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="None. Defined in None">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#State">State</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="None. Defined in None">Range</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Indicator">Indicator</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="impacts">
-          <h3>impacts
-            <sup class="sup-op" title="OWL Object Property">op</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>https://w3id.org/impactont#impacts</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="None. Defined in None">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Event">Event</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="None. Defined in None">Range</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Thing">Thing</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="comprisesEvents">
-          <h3>comprises events
-            <sup class="sup-op" title="OWL Object Property">op</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>https://w3id.org/impactont#comprisesEvents</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="None. Defined in None">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Event">Event</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="None. Defined in None">Range</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Event">Event</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="hasStateA">
-          <h3>has state a
-            <sup class="sup-op" title="OWL Object Property">op</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>https://w3id.org/impactont#hasStateA</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="None. Defined in None">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Event">Event</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="None. Defined in None">Range</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#State">State</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="hasStateB">
-          <h3>has state b
-            <sup class="sup-op" title="OWL Object Property">op</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>https://w3id.org/impactont#hasStateB</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="None. Defined in None">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Event">Event</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="None. Defined in None">Range</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#State">State</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="hasProvenance">
-          <h3>has provenance
-            <sup class="sup-op" title="OWL Object Property">op</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>https://w3id.org/impactont#hasProvenance</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="None. Defined in None">Domain</a>
-              </th>
-              <td>
-                <ul>
-                  <li>
-                    <span>
-                      <a href="#State">State</a>
-                      <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#Impact">Impact</a>
-                      <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                    </span>
-                  </li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="None. Defined in None">Range</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Event">Event</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div class="section" id="datatypeproperties">
-        <h2>Datatype Properties</h2>
-        <div class="property entity" id="hasModality">
-          <h3>has modality
-            <sup class="sup-dp" title="OWL Datatype Property">dp</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>https://w3id.org/impactont#hasModality</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="None. Defined in None">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#State">State</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="None. Defined in None">Range</a>
-              </th>
-              <td></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div id="namespaces">
-        <h2>Namespaces</h2>
-        <dl>
-          <dt id=":">:</dt>
-          <dd>
-            <code>https://w3id.org/impactont#</code>
-          </dd>
-          <dt id="dcmitype">dcmitype</dt>
-          <dd>
-            <code>http://purl.org/dc/dcmitype/</code>
-          </dd>
-          <dt id="dcterms">dcterms</dt>
-          <dd>
-            <code>http://purl.org/dc/terms/</code>
-          </dd>
-          <dt id="ns1">ns1</dt>
-          <dd>
-            <code>https://w3id.org/</code>
-          </dd>
-          <dt id="ns2">ns2</dt>
-          <dd>
-            <code>owl:</code>
-          </dd>
-          <dt id="owl">owl</dt>
-          <dd>
-            <code>http://www.w3.org/2002/07/owl#</code>
-          </dd>
-          <dt id="prov">prov</dt>
-          <dd>
-            <code>http://www.w3.org/ns/prov#</code>
-          </dd>
-          <dt id="rdf">rdf</dt>
-          <dd>
-            <code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code>
-          </dd>
-          <dt id="rdfs">rdfs</dt>
-          <dd>
-            <code>http://www.w3.org/2000/01/rdf-schema#</code>
-          </dd>
-          <dt id="skos">skos</dt>
-          <dd>
-            <code>http://www.w3.org/2004/02/skos/core#</code>
-          </dd>
-        </dl>
-      </div>
-      <div id="legend">
-        <h2>Legend</h2>
-        <table class="entity">
-          <tr>
-            <td>
-              <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-            </td>
-            <td>Classes</td>
-          </tr>
-          <tr>
-            <td>
-              <sup class="sup-op" title="OWL Object Property">op</sup>
-            </td>
-            <td>Object Properties</td>
-          </tr>
-          <tr>
-            <td>
-              <sup class="sup-dp" title="OWL Datatype Property">dp</sup>
-            </td>
-            <td>Datatype Properties</td>
-          </tr>
-        </table>
-      </div>
+          <div class="item" id="cls--Thing">
+            <h3>:Thing</h3>
+            <div class="meta">IRI: <code>https://w3id.org/impactont#Thing</code></div>
+
+
+              <div class="section-title">Comments</div>
+                <div class="comment">Thing extends owl:Thing with the property of 'hasState'.</div>
+
+            <div class="kv">
+                <div class="key">SubClass Of</div>
+                <div>
+                    <a href="owl:Thing">ns1:Thing</a>                </div>
+                <div class="key">In Domain Of</div>
+                <div>
+                    <a href="#prop--hasState">:hasState</a>                </div>
+                <div class="key">In Range Of</div>
+                <div>
+                    <a href="#prop--impacts">:impacts</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="cls--Event">
+            <h3>Event</h3>
+            <div class="meta">IRI: <code>https://w3id.org/impactont#Event</code></div>
+
+              <div class="section-title"><span class="badge">SKOS</span>Definition</div>
+                <div class="defblock">A change in the state of an impactont:Thing.</div>
+
+              <div class="section-title">Comments</div>
+                <div class="comment">An Event may comprise other Events.</div>
+
+            <div class="kv">
+                <div class="key">Superclass Of</div>
+                <div>
+                    <a href="#cls--Impact">:Impact</a>                </div>
+                <div class="key">In Domain Of</div>
+                <div>
+                    <a href="#prop--impacts">:impacts</a>,                     <a href="#prop--comprisesEvents">:comprisesEvents</a>,                     <a href="#prop--hasStateA">:hasStateA</a>,                     <a href="#prop--hasStateB">:hasStateB</a>                </div>
+                <div class="key">In Range Of</div>
+                <div>
+                    <a href="#prop--comprisesEvents">:comprisesEvents</a>,                     <a href="#prop--hasProvenance">:hasProvenance</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="cls--Impact">
+            <h3>Impact</h3>
+            <div class="meta">IRI: <code>https://w3id.org/impactont#Impact</code></div>
+
+              <div class="section-title"><span class="badge">SKOS</span>Definition</div>
+                <div class="defblock">An event with an identifiable provenance.</div>
+
+
+            <div class="kv">
+                <div class="key">SubClass Of</div>
+                <div>
+                    <a href="#cls--Event">:Event</a>                </div>
+                <div class="key">In Domain Of</div>
+                <div>
+                    <a href="#prop--hasProvenance">:hasProvenance</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="cls--Indicator">
+            <h3>Indicator</h3>
+            <div class="meta">IRI: <code>https://w3id.org/impactont#Indicator</code></div>
+
+              <div class="section-title"><span class="badge">SKOS</span>Definition</div>
+                <div class="defblock">A convention for indicating the state of a thing.</div>
+
+              <div class="section-title">Comments</div>
+                <div class="comment">Must have a description and a unit of measure. Can optionally have a rationale.</div>
+
+            <div class="kv">
+                <div class="key">In Range Of</div>
+                <div>
+                    <a href="#prop--isDefinedByIndicator">:isDefinedByIndicator</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="cls--Process">
+            <h3>Process</h3>
+            <div class="meta">IRI: <code>https://w3id.org/impactont#Process</code></div>
+
+              <div class="section-title"><span class="badge">SKOS</span>Definition</div>
+                <div class="defblock">A series of interrelated or interacting events.</div>
+
+
+            <div class="kv">
+            </div>
+          </div>
+          <div class="item" id="cls--State">
+            <h3>State</h3>
+            <div class="meta">IRI: <code>https://w3id.org/impactont#State</code></div>
+
+              <div class="section-title"><span class="badge">SKOS</span>Definition</div>
+                <div class="defblock">The condition of a thing at a specific point in time, expressed in terms of one or more indicator-value pairs.</div>
+
+
+            <div class="kv">
+                <div class="key">In Domain Of</div>
+                <div>
+                    <a href="#prop--hasTemporalLocation">:hasTemporalLocation</a>,                     <a href="#prop--hasModality">:hasModality</a>,                     <a href="#prop--isDefinedByIndicator">:isDefinedByIndicator</a>,                     <a href="#prop--hasProvenance">:hasProvenance</a>                </div>
+                <div class="key">In Range Of</div>
+                <div>
+                    <a href="#prop--hasState">:hasState</a>,                     <a href="#prop--hasStateA">:hasStateA</a>,                     <a href="#prop--hasStateB">:hasStateB</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="cls--TemporalLocation">
+            <h3>Temporal Location</h3>
+            <div class="meta">IRI: <code>https://w3id.org/impactont#TemporalLocation</code></div>
+
+              <div class="section-title"><span class="badge">SKOS</span>Definition</div>
+                <div class="defblock">The point or period in time at or during which a thing occurs, expressed in terms of the OWL-Time ontology.</div>
+
+              <div class="section-title">Comments</div>
+                <div class="comment">A point in time is a single time:Instant, while a period in time is defined by two distinct time:Instants (typically using the time:ProperInterval class).</div>
+
+            <div class="kv">
+                <div class="key">In Range Of</div>
+                <div>
+                    <a href="#prop--hasTemporalLocation">:hasTemporalLocation</a>                </div>
+            </div>
+          </div>
+      </section>
+
+      <section>
+        <h2>Properties</h2>
+          <div class="item" id="prop--comprisesEvents">
+            <h3>:comprisesEvents</h3>
+            <div class="meta">IRI: <code>https://w3id.org/impactont#comprisesEvents</code></div>
+
+
+
+            <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--Event">:Event</a>                </div>
+                <div class="key">Range</div>
+                <div>
+                    <a href="#cls--Event">:Event</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="prop--hasModality">
+            <h3>:hasModality</h3>
+            <div class="meta">IRI: <code>https://w3id.org/impactont#hasModality</code></div>
+
+
+
+            <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--State">:State</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="prop--hasProvenance">
+            <h3>:hasProvenance</h3>
+            <div class="meta">IRI: <code>https://w3id.org/impactont#hasProvenance</code></div>
+
+
+
+            <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--State">:State</a>,                     <a href="#cls--Impact">:Impact</a>                </div>
+                <div class="key">Range</div>
+                <div>
+                    <a href="#cls--Event">:Event</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="prop--hasState">
+            <h3>:hasState</h3>
+            <div class="meta">IRI: <code>https://w3id.org/impactont#hasState</code></div>
+
+
+
+            <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--Thing">:Thing</a>                </div>
+                <div class="key">Range</div>
+                <div>
+                    <a href="#cls--State">:State</a>                </div>
+                <div class="key">Inverse Of</div>
+                <div>
+                    <a href="#prop--isStateOf">:isStateOf</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="prop--hasStateA">
+            <h3>:hasStateA</h3>
+            <div class="meta">IRI: <code>https://w3id.org/impactont#hasStateA</code></div>
+
+
+
+            <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--Event">:Event</a>                </div>
+                <div class="key">Range</div>
+                <div>
+                    <a href="#cls--State">:State</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="prop--hasStateB">
+            <h3>:hasStateB</h3>
+            <div class="meta">IRI: <code>https://w3id.org/impactont#hasStateB</code></div>
+
+
+
+            <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--Event">:Event</a>                </div>
+                <div class="key">Range</div>
+                <div>
+                    <a href="#cls--State">:State</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="prop--hasTemporalLocation">
+            <h3>:hasTemporalLocation</h3>
+            <div class="meta">IRI: <code>https://w3id.org/impactont#hasTemporalLocation</code></div>
+
+
+
+            <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--State">:State</a>                </div>
+                <div class="key">Range</div>
+                <div>
+                    <a href="#cls--TemporalLocation">:TemporalLocation</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="prop--impacts">
+            <h3>:impacts</h3>
+            <div class="meta">IRI: <code>https://w3id.org/impactont#impacts</code></div>
+
+
+
+            <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--Event">:Event</a>                </div>
+                <div class="key">Range</div>
+                <div>
+                    <a href="#cls--Thing">:Thing</a>                </div>
+                <div class="key">Inverse Of</div>
+                <div>
+                    <a href="#prop--isImpactedBy">:isImpactedBy</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="prop--isDefinedByIndicator">
+            <h3>:isDefinedByIndicator</h3>
+            <div class="meta">IRI: <code>https://w3id.org/impactont#isDefinedByIndicator</code></div>
+
+
+
+            <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--State">:State</a>                </div>
+                <div class="key">Range</div>
+                <div>
+                    <a href="#cls--Indicator">:Indicator</a>                </div>
+                <div class="key">Inverse Of</div>
+                <div>
+                    <a href="#prop--definesState">:definesState</a>                </div>
+            </div>
+          </div>
+      </section>
     </div>
-    <div id="pylode">
-      <p>made by 
-        <a href="https://github.com/rdflib/pyLODE">
-          <span id="p">p</span>
-          <span id="y">y</span>
-          <span>LODE</span>
-        </a>
-        <a href="https://github.com/rdflib/pyLODE/release/3.0.1" id="version">3.0.1</a>
-      </p>
-    </div>
-    <div id="toc">
-      <h3>Table of Contents</h3>
-      <ul class="first">
-        <li>
-          <h4>
-            <a href="#metadata">Metadata</a>
-          </h4>
-        </li>
-        <li>
-          <h4>
-            <a href="#classes">Classes</a>
-          </h4>
-          <ul class="second">
-            <li>
-              <a href="#Thing">Thing</a>
-            </li>
-            <li>
-              <a href="#State">State</a>
-            </li>
-            <li>
-              <a href="#TemporalLocation">Temporal Location</a>
-            </li>
-            <li>
-              <a href="#Event">Event</a>
-            </li>
-            <li>
-              <a href="#Impact">Impact</a>
-            </li>
-            <li>
-              <a href="#Indicator">Indicator</a>
-            </li>
-            <li>
-              <a href="#Process">Process</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <h4>
-            <a href="#objectproperties">Object Properties</a>
-          </h4>
-          <ul class="second">
-            <li>
-              <a href="#hasState">has state</a>
-            </li>
-            <li>
-              <a href="#hasTemporalLocation">has temporal location</a>
-            </li>
-            <li>
-              <a href="#isDefinedByIndicator">is defined by indicator</a>
-            </li>
-            <li>
-              <a href="#impacts">impacts</a>
-            </li>
-            <li>
-              <a href="#comprisesEvents">comprises events</a>
-            </li>
-            <li>
-              <a href="#hasStateA">has state a</a>
-            </li>
-            <li>
-              <a href="#hasStateB">has state b</a>
-            </li>
-            <li>
-              <a href="#hasProvenance">has provenance</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <h4>
-            <a href="#datatypeproperties">Datatype Properties</a>
-          </h4>
-          <ul class="second">
-            <li>
-              <a href="#hasModality">has modality</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <h4>
-            <a href="#namespaces">Namespaces</a>
-          </h4>
-          <ul class="second">
-            <li>
-              <a href="#"></a>
-            </li>
-            <li>
-              <a href="#dcmitype">dcmitype</a>
-            </li>
-            <li>
-              <a href="#dcterms">dcterms</a>
-            </li>
-            <li>
-              <a href="#ns1">ns1</a>
-            </li>
-            <li>
-              <a href="#ns2">ns2</a>
-            </li>
-            <li>
-              <a href="#owl">owl</a>
-            </li>
-            <li>
-              <a href="#prov">prov</a>
-            </li>
-            <li>
-              <a href="#rdf">rdf</a>
-            </li>
-            <li>
-              <a href="#rdfs">rdfs</a>
-            </li>
-            <li>
-              <a href="#skos">skos</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <h4>
-            <a href="#legend">Legend</a>
-          </h4>
-          <ul class="second"></ul>
-        </li>
-      </ul>
-    </div>
-  </body>
+  </div>
+</body>
 </html>
