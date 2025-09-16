@@ -73,7 +73,7 @@
 		<rdfs:label xml:lang="en">impacts</rdfs:label>
         <owl:inverseOf rdf:resource="#isImpactedBy"/>
         <rdfs:domain rdf:resource="#Event"/>
-        <rdfs:range rdf:resource="#Thing"/>
+        <rdfs:range rdf:resource="#State"/>
     </owl:ObjectProperty>
 
     <!-- #Event -->
