@@ -89,7 +89,7 @@
     <owl:Class rdf:about="#Impact">
         <rdfs:subClassOf rdf:resource="#Event"/>
 		<rdfs:label >Impact</rdfs:label>
-        <rdfs:comment >An event with an identifiable provenance.</rdfs:comment>
+        <skos:definition>An event with an identifiable provenance.</skos:definition>
     </owl:Class>
 	
 	<owl:ObjectProperty rdf:about="#hasStateA">

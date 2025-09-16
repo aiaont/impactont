@@ -58,8 +58,8 @@
 
 :Impact a owl:Class ;
     rdfs:label "Impact" ;
-    rdfs:comment "An event with an identifiable provenance." ;
-    rdfs:subClassOf :Event .
+    rdfs:subClassOf :Event ;
+    skos:definition "An event with an identifiable provenance." .
 
 :Indicator a owl:Class ;
     rdfs:label "Indicator" ;
