@@ -55,7 +55,7 @@
 <https://w3id.org/impactont#impacts> a owl:ObjectProperty ;
     rdfs:label "impacts"@en ;
     rdfs:domain <https://w3id.org/impactont#Event> ;
-    rdfs:range <https://w3id.org/impactont#Thing> ;
+    rdfs:range <https://w3id.org/impactont#State> ;
     owl:inverseOf <https://w3id.org/impactont#isImpactedBy> .
 
 <https://w3id.org/impactont#isDefinedByIndicator> a owl:ObjectProperty ;
