@@ -1,4 +1,3 @@
-@prefix : <https://w3id.org/impactont#> .
 @prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -11,78 +10,88 @@
     dcterms:description "An ontology for describing how events impact things."@en ;
     dcterms:title "Impact Ontology"@en .
 
-:Process a owl:Class ;
+<https://w3id.org/impactont#Process> a owl:Class ;
     rdfs:label "Process" ;
     skos:definition "A series of interrelated or interacting events." .
 
-:comprisesEvents a owl:ObjectProperty ;
-    rdfs:domain :Event ;
-    rdfs:range :Event .
+<https://w3id.org/impactont#comprisesEvents> a owl:ObjectProperty ;
+    rdfs:label "comprisesEvents"@en ;
+    rdfs:domain <https://w3id.org/impactont#Event> ;
+    rdfs:range <https://w3id.org/impactont#Event> .
 
-:hasModality a owl:DatatypeProperty ;
-    rdfs:domain :State ;
+<https://w3id.org/impactont#hasModality> a owl:DatatypeProperty ;
+    rdfs:label "hasModality"@en ;
+    rdfs:domain <https://w3id.org/impactont#State> ;
     rdfs:range [ a rdfs:Datatype ;
             owl:oneOf ( [ a rdf:Literal ] [ a rdf:Literal ] ) ] .
 
-:hasProvenance a owl:ObjectProperty ;
-    rdfs:domain :Impact,
-        :State ;
-    rdfs:range :Event .
+<https://w3id.org/impactont#hasProvenance> a owl:ObjectProperty ;
+    rdfs:label "hasProvenance"@en ;
+    rdfs:domain <https://w3id.org/impactont#Impact>,
+        <https://w3id.org/impactont#State> ;
+    rdfs:range <https://w3id.org/impactont#Event> .
 
-:hasState a owl:ObjectProperty ;
-    rdfs:domain :Thing ;
-    rdfs:range :State ;
-    owl:inverseOf :isStateOf .
+<https://w3id.org/impactont#hasState> a owl:ObjectProperty ;
+    rdfs:label "hasState"@en ;
+    rdfs:domain <https://w3id.org/impactont#Thing> ;
+    rdfs:range <https://w3id.org/impactont#State> ;
+    owl:inverseOf <https://w3id.org/impactont#isStateOf> .
 
-:hasStateA a owl:ObjectProperty ;
-    rdfs:domain :Event ;
-    rdfs:range :State .
+<https://w3id.org/impactont#hasStateA> a owl:ObjectProperty ;
+    rdfs:label "hasStateA"@en ;
+    rdfs:domain <https://w3id.org/impactont#Event> ;
+    rdfs:range <https://w3id.org/impactont#State> .
 
-:hasStateB a owl:ObjectProperty ;
-    rdfs:domain :Event ;
-    rdfs:range :State .
+<https://w3id.org/impactont#hasStateB> a owl:ObjectProperty ;
+    rdfs:label "hasStateB"@en ;
+    rdfs:domain <https://w3id.org/impactont#Event> ;
+    rdfs:range <https://w3id.org/impactont#State> .
 
-:hasTemporalLocation a owl:ObjectProperty ;
-    rdfs:domain :State ;
-    rdfs:range :TemporalLocation .
+<https://w3id.org/impactont#hasTemporalLocation> a owl:ObjectProperty ;
+    rdfs:label "hasTemporalLocation"@en ;
+    rdfs:domain <https://w3id.org/impactont#State> ;
+    rdfs:range <https://w3id.org/impactont#TemporalLocation> .
 
-:impacts a owl:ObjectProperty ;
-    rdfs:domain :Event ;
-    rdfs:range :Thing ;
-    owl:inverseOf :isImpactedBy .
+<https://w3id.org/impactont#impacts> a owl:ObjectProperty ;
+    rdfs:label "impacts"@en ;
+    rdfs:domain <https://w3id.org/impactont#Event> ;
+    rdfs:range <https://w3id.org/impactont#Thing> ;
+    owl:inverseOf <https://w3id.org/impactont#isImpactedBy> .
 
-:isDefinedByIndicator a owl:ObjectProperty ;
-    rdfs:domain :State ;
-    rdfs:range :Indicator ;
-    owl:inverseOf :definesState .
+<https://w3id.org/impactont#isDefinedByIndicator> a owl:ObjectProperty ;
+    rdfs:label "isDefinedByIndicator"@en ;
+    rdfs:domain <https://w3id.org/impactont#State> ;
+    rdfs:range <https://w3id.org/impactont#Indicator> ;
+    owl:inverseOf <https://w3id.org/impactont#definesState> .
 
-:Impact a owl:Class ;
+<https://w3id.org/impactont#Impact> a owl:Class ;
     rdfs:label "Impact" ;
-    rdfs:subClassOf :Event ;
+    rdfs:subClassOf <https://w3id.org/impactont#Event> ;
     skos:definition "An event with an identifiable provenance." .
 
-:Indicator a owl:Class ;
+<https://w3id.org/impactont#Indicator> a owl:Class ;
     rdfs:label "Indicator" ;
     rdfs:comment "Must have a description and a unit of measure. Can optionally have a rationale." ;
     skos:definition "A convention for indicating the state of a thing." .
 
-:TemporalLocation a owl:Class ;
-    rdfs:label "Temporal Location"@en ;
+<https://w3id.org/impactont#TemporalLocation> a owl:Class ;
+    rdfs:label "TemporalLocation"@en ;
     rdfs:comment "A point in time is a single time:Instant, while a period in time is defined by two distinct time:Instants (typically using the time:ProperInterval class)."@en ;
     skos:definition "The point or period in time at or during which a thing occurs, expressed in terms of the OWL-Time ontology." .
 
-:Thing a owl:Class ;
+<https://w3id.org/impactont#Thing> a owl:Class ;
+    rdfs:label "Thing"@en ;
     rdfs:comment "Thing extends owl:Thing with the property of 'hasState'." ;
-    rdfs:subClassOf <owl:Thing> .
+    rdfs:subClassOf owl:Thing .
 
-:Event a owl:Class ;
+<https://w3id.org/impactont#Event> a owl:Class ;
     rdfs:label "Event"@en ;
     rdfs:comment "An Event may comprise other Events." ;
     owl:equivalentClass dcmitype:Event,
         prov:InstantaneousEvent ;
     skos:definition "A change in the state of an impactont:Thing." .
 
-:State a owl:Class ;
+<https://w3id.org/impactont#State> a owl:Class ;
     rdfs:label "State"@en ;
     skos:definition "The condition of a thing at a specific point in time, expressed in terms of one or more indicator-value pairs." .
 
