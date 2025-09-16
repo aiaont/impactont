@@ -1,137 +1,5 @@
 [
   {
-    "@id": "https://w3id.org/impactont#impacts",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "https://w3id.org/impactont#Event"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "https://w3id.org/impactont#Thing"
-      }
-    ],
-    "http://www.w3.org/2002/07/owl#inverseOf": [
-      {
-        "@id": "https://w3id.org/impactont#isImpactedBy"
-      }
-    ]
-  },
-  {
-    "@id": "https://w3id.org/impactont#isDefinedByIndicator",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "https://w3id.org/impactont#State"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "https://w3id.org/impactont#Indicator"
-      }
-    ],
-    "http://www.w3.org/2002/07/owl#inverseOf": [
-      {
-        "@id": "https://w3id.org/impactont#definesState"
-      }
-    ]
-  },
-  {
-    "@id": "https://w3id.org/impactont#Indicator",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#Class"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#comment": [
-      {
-        "@value": "Must have a description and a unit of measure. Can optionally have a rationale."
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": [
-      {
-        "@value": "Indicator"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#definition": [
-      {
-        "@value": "A convention for indicating the state of a thing."
-      }
-    ]
-  },
-  {
-    "@id": "https://w3id.org/impactont#TemporalLocation",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#Class"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#comment": [
-      {
-        "@language": "en",
-        "@value": "A point in time is a single time:Instant, while a period in time is defined by two distinct time:Instants (typically using the time:ProperInterval class)."
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": [
-      {
-        "@language": "en",
-        "@value": "Temporal Location"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#definition": [
-      {
-        "@value": "The point or period in time at or during which a thing occurs, expressed in terms of the OWL-Time ontology."
-      }
-    ]
-  },
-  {
-    "@id": "https://w3id.org/impactont#hasModality",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#DatatypeProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "https://w3id.org/impactont#State"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "_:N1ca2c75def51474f931fbd7e5e818c4b"
-      }
-    ]
-  },
-  {
-    "@id": "_:N1ca2c75def51474f931fbd7e5e818c4b",
-    "@type": [
-      "http://www.w3.org/2000/01/rdf-schema#Datatype"
-    ],
-    "http://www.w3.org/2002/07/owl#oneOf": [
-      {
-        "@list": [
-          {
-            "@id": "_:N6f3eea64c98541198d4b47c1fe5862dc"
-          },
-          {
-            "@id": "_:N0bb7747a739346bfabef79a41d2d100b"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "@id": "_:N6f3eea64c98541198d4b47c1fe5862dc",
-    "@type": [
-      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
-    ]
-  },
-  {
-    "@id": "_:N0bb7747a739346bfabef79a41d2d100b",
-    "@type": [
-      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
-    ]
-  },
-  {
     "@id": "https://w3id.org/impactont#Thing",
     "@type": [
       "http://www.w3.org/2002/07/owl#Class"
@@ -141,70 +9,37 @@
         "@value": "Thing extends owl:Thing with the property of 'hasState'."
       }
     ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Thing"
+      }
+    ],
     "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
       {
-        "@id": "owl:Thing"
+        "@id": "http://www.w3.org/2002/07/owl#Thing"
       }
     ]
   },
   {
-    "@id": "https://w3id.org/impactont#hasState",
+    "@id": "https://w3id.org/impactont#hasStateA",
     "@type": [
       "http://www.w3.org/2002/07/owl#ObjectProperty"
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "https://w3id.org/impactont#Thing"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "https://w3id.org/impactont#State"
-      }
-    ],
-    "http://www.w3.org/2002/07/owl#inverseOf": [
-      {
-        "@id": "https://w3id.org/impactont#isStateOf"
-      }
-    ]
-  },
-  {
-    "@id": "https://w3id.org/impactont#hasProvenance",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "https://w3id.org/impactont#State"
-      },
-      {
-        "@id": "https://w3id.org/impactont#Impact"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
       {
         "@id": "https://w3id.org/impactont#Event"
       }
-    ]
-  },
-  {
-    "@id": "https://w3id.org/impactont#Impact",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#Class"
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
-        "@value": "Impact"
+        "@language": "en",
+        "@value": "hasStateA"
       }
     ],
-    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+    "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "https://w3id.org/impactont#Event"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#definition": [
-      {
-        "@value": "An event with an identifiable provenance."
+        "@id": "https://w3id.org/impactont#State"
       }
     ]
   },
@@ -239,7 +74,50 @@
     ]
   },
   {
-    "@id": "https://w3id.org/impactont#hasStateA",
+    "@id": "https://w3id.org/impactont#Impact",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Impact"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "https://w3id.org/impactont#Event"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "An event with an identifiable provenance."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/impactont#hasTemporalLocation",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/impactont#State"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "hasTemporalLocation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/impactont#TemporalLocation"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/impactont#impacts",
     "@type": [
       "http://www.w3.org/2002/07/owl#ObjectProperty"
     ],
@@ -248,9 +126,41 @@
         "@id": "https://w3id.org/impactont#Event"
       }
     ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "impacts"
+      }
+    ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "https://w3id.org/impactont#State"
+        "@id": "https://w3id.org/impactont#Thing"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "https://w3id.org/impactont#isImpactedBy"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/impactont#Indicator",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Must have a description and a unit of measure. Can optionally have a rationale."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Indicator"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "A convention for indicating the state of a thing."
       }
     ]
   },
@@ -273,66 +183,52 @@
     ]
   },
   {
-    "@id": "https://w3id.org/impactont#hasStateB",
+    "@id": "https://w3id.org/impactont#isDefinedByIndicator",
     "@type": [
       "http://www.w3.org/2002/07/owl#ObjectProperty"
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@id": "https://w3id.org/impactont#Event"
+        "@id": "https://w3id.org/impactont#State"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "isDefinedByIndicator"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "https://w3id.org/impactont#State"
+        "@id": "https://w3id.org/impactont#Indicator"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "https://w3id.org/impactont#definesState"
       }
     ]
   },
   {
-    "@id": "https://w3id.org/impactont#Process",
+    "@id": "https://w3id.org/impactont#TemporalLocation",
     "@type": [
       "http://www.w3.org/2002/07/owl#Class"
     ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A point in time is a single time:Instant, while a period in time is defined by two distinct time:Instants (typically using the time:ProperInterval class)."
+      }
+    ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
-        "@value": "Process"
+        "@language": "en",
+        "@value": "TemporalLocation"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
-        "@value": "A series of interrelated or interacting events."
-      }
-    ]
-  },
-  {
-    "@id": "https://w3id.org/impactont#comprisesEvents",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "https://w3id.org/impactont#Event"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "https://w3id.org/impactont#Event"
-      }
-    ]
-  },
-  {
-    "@id": "https://w3id.org/impactont#hasTemporalLocation",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "https://w3id.org/impactont#State"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "https://w3id.org/impactont#TemporalLocation"
+        "@value": "The point or period in time at or during which a thing occurs, expressed in terms of the OWL-Time ontology."
       }
     ]
   },
@@ -350,6 +246,170 @@
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
         "@value": "The condition of a thing at a specific point in time, expressed in terms of one or more indicator-value pairs."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/impactont#hasStateB",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/impactont#Event"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "hasStateB"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/impactont#State"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/impactont#hasModality",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/impactont#State"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "hasModality"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "_:N2a3ce91171b44bc786387578f905df69"
+      }
+    ]
+  },
+  {
+    "@id": "_:N2a3ce91171b44bc786387578f905df69",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Datatype"
+    ],
+    "http://www.w3.org/2002/07/owl#oneOf": [
+      {
+        "@list": [
+          {
+            "@id": "_:Nc9f8698cb781461f8d48f3eef35a580e"
+          },
+          {
+            "@id": "_:N853a23e51ba14fbea1db7de2c7dc3b64"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "@id": "_:Nc9f8698cb781461f8d48f3eef35a580e",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+    ]
+  },
+  {
+    "@id": "_:N853a23e51ba14fbea1db7de2c7dc3b64",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+    ]
+  },
+  {
+    "@id": "https://w3id.org/impactont#hasState",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/impactont#Thing"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "hasState"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/impactont#State"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "https://w3id.org/impactont#isStateOf"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/impactont#hasProvenance",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/impactont#State"
+      },
+      {
+        "@id": "https://w3id.org/impactont#Impact"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "hasProvenance"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/impactont#Event"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/impactont#comprisesEvents",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/impactont#Event"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "comprisesEvents"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/impactont#Event"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/impactont#Process",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Process"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "A series of interrelated or interacting events."
       }
     ]
   }
