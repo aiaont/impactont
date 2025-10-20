@@ -32,7 +32,13 @@
     <!-- #State -->
     <owl:Class rdf:about="http://w3id.org/impactont#State">
 		<rdfs:label xml:lang="en">State</rdfs:label>
-		<skos:definition>The condition of a thing at a specific point in time, expressed in terms of one or more indicator-value pairs.</skos:definition>        
+		<skos:definition>The condition of a thing at a specific point in time, expressed in terms of one or more indicator-value pairs.</skos:definition>  
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="http://w3id.org/impactont#hasProvenance"/>
+				<owl:allValuesFrom rdf:resource="http://w3id.org/impactont#Event"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>			
     </owl:Class>
 
 	<owl:ObjectProperty rdf:about="http://w3id.org/impactont#hasTemporalLocation">
@@ -52,6 +58,7 @@
     <owl:DatatypeProperty rdf:about="http://w3id.org/impactont#hasModality">
 		<rdfs:label xml:lang="en">hasModality</rdfs:label>
         <rdfs:domain rdf:resource="#State"/>
+		<!--
 		<rdfs:range>
 			<rdfs:Datatype>
 				<owl:oneOf rdf:parseType="Collection">
@@ -60,6 +67,7 @@
 				</owl:oneOf>
 			</rdfs:Datatype>
 		</rdfs:range>		
+		-->
     </owl:DatatypeProperty>
 
   	<owl:ObjectProperty rdf:about="http://w3id.org/impactont#isDefinedByIndicator">
@@ -95,6 +103,12 @@
 	<!-- #Impact -->
     <owl:Class rdf:about="http://w3id.org/impactont#Impact">
         <rdfs:subClassOf rdf:resource="#Event"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="http://w3id.org/impactont#hasProvenance"/>
+				<owl:allValuesFrom rdf:resource="http://w3id.org/impactont#Event"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>			
 		<rdfs:label >Impact</rdfs:label>
         <skos:definition>An event with an identifiable provenance.</skos:definition>
     </owl:Class>
@@ -114,9 +128,7 @@
     <!-- #hasProvenance -->
     <owl:ObjectProperty rdf:about="http://w3id.org/impactont#hasProvenance">
 		<rdfs:label xml:lang="en">hasProvenance</rdfs:label>
-        <rdfs:domain rdf:resource="#State"/>
-		<rdfs:domain rdf:resource="#Impact"/>
-        <rdfs:range rdf:resource="#Event"/>
+		<rdfs:comment>This property is used on the State and Impact classes. The range should always be an Event. This is enforced by owl:Restriction (see the definitions of the State and Impact classes.)</rdfs:comment>	
     </owl:ObjectProperty>
 
     <!-- #Indicator -->
