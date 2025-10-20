@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xml:base="https://w3id.org/impactont"
+<rdf:RDF xmlns="http://w3id.org/impactont#"
+	 xml:base="http://w3id.org/impactont"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
@@ -10,18 +11,18 @@
 	 xmlns:prov="http://www.w3.org/ns/prov#"
 	 xmlns:time="http://www.w3.org/2006/time#">
 	 
-    <owl:Ontology rdf:about="https://w3id.org/impactont">
+    <owl:Ontology rdf:about="http://w3id.org/impactont">
         <terms:title xml:lang="en">Impact Ontology</terms:title>
 		<terms:description xml:lang="en">An ontology for describing how events impact things.</terms:description>
     </owl:Ontology>
 
-	<owl:Class rdf:about="#Thing">
+	<owl:Class rdf:about="http://w3id.org/impactont#Thing">
 		<rdfs:label xml:lang="en">Thing</rdfs:label>
 		<rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 		<rdfs:comment>Thing extends owl:Thing with the property of 'hasState'.</rdfs:comment>
 	</owl:Class>
 
-	<owl:ObjectProperty rdf:about="#hasState">
+	<owl:ObjectProperty rdf:about="http://w3id.org/impactont#hasState">
 		<rdfs:label xml:lang="en">hasState</rdfs:label>
 		<owl:inverseOf rdf:resource="#isStateOf"/>
 		<rdfs:domain rdf:resource="#Thing"/>
@@ -29,39 +30,39 @@
 	</owl:ObjectProperty>
 
     <!-- #State -->
-    <owl:Class rdf:about="#State">
+    <owl:Class rdf:about="http://w3id.org/impactont#State">
 		<rdfs:label xml:lang="en">State</rdfs:label>
 		<skos:definition>The condition of a thing at a specific point in time, expressed in terms of one or more indicator-value pairs.</skos:definition>        
     </owl:Class>
 
-	<owl:ObjectProperty rdf:about="#hasTemporalLocation">
+	<owl:ObjectProperty rdf:about="http://w3id.org/impactont#hasTemporalLocation">
 		<rdfs:label xml:lang="en">hasTemporalLocation</rdfs:label>
 		<rdfs:domain rdf:resource="#State"/>
 		<rdfs:range rdf:resource="#TemporalLocation"/>
 	</owl:ObjectProperty>
 
    <!-- #TemporalLocation -->
-    <owl:Class rdf:about="#TemporalLocation">
+    <owl:Class rdf:about="http://w3id.org/impactont#TemporalLocation">
 		<rdfs:label xml:lang="en">TemporalLocation</rdfs:label>   
 		<skos:definition>The point or period in time at or during which a thing occurs, expressed in terms of the OWL-Time ontology.</skos:definition>
         <rdfs:comment xml:lang="en">A point in time is a single time:Instant, while a period in time is defined by two distinct time:Instants (typically using the time:ProperInterval class).</rdfs:comment>
     </owl:Class>
 
     <!-- #hasModality -->
-    <owl:DatatypeProperty rdf:about="#hasModality">
+    <owl:DatatypeProperty rdf:about="http://w3id.org/impactont#hasModality">
 		<rdfs:label xml:lang="en">hasModality</rdfs:label>
         <rdfs:domain rdf:resource="#State"/>
 		<rdfs:range>
 			<rdfs:Datatype>
 				<owl:oneOf rdf:parseType="Collection">
-					<rdf:Literal >counterfactual</rdf:Literal>
-					<rdf:Literal >real</rdf:Literal>
+					<rdf:Literal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">counterfactual</rdf:Literal>
+					<rdf:Literal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">real</rdf:Literal>
 				</owl:oneOf>
 			</rdfs:Datatype>
 		</rdfs:range>		
     </owl:DatatypeProperty>
 
-  	<owl:ObjectProperty rdf:about="#isDefinedByIndicator">
+  	<owl:ObjectProperty rdf:about="http://w3id.org/impactont#isDefinedByIndicator">
 		<rdfs:label xml:lang="en">isDefinedByIndicator</rdfs:label>
 		<owl:inverseOf rdf:resource="#definesState"/>
 		<rdfs:domain rdf:resource="#State"/>
@@ -69,7 +70,7 @@
 	</owl:ObjectProperty>
     
     <!-- #impacts -->
-    <owl:ObjectProperty rdf:about="#impacts">
+    <owl:ObjectProperty rdf:about="http://w3id.org/impactont#impacts">
 		<rdfs:label xml:lang="en">impacts</rdfs:label>
         <owl:inverseOf rdf:resource="#isImpactedBy"/>
         <rdfs:domain rdf:resource="#Event"/>
@@ -77,7 +78,7 @@
     </owl:ObjectProperty>
 
     <!-- #Event -->
-    <owl:Class rdf:about="#Event">
+    <owl:Class rdf:about="http://w3id.org/impactont#Event">
         <rdfs:label xml:lang="en">Event</rdfs:label>	
         <owl:equivalentClass rdf:resource="http://purl.org/dc/dcmitype/Event"/>
         <owl:equivalentClass rdf:resource="http://www.w3.org/ns/prov#InstantaneousEvent"/>
@@ -85,33 +86,33 @@
 		<rdfs:comment>An Event may comprise other Events.</rdfs:comment>	
     </owl:Class>
 
-    <owl:ObjectProperty rdf:about="#comprisesEvents">
+    <owl:ObjectProperty rdf:about="http://w3id.org/impactont#comprisesEvents">
 		<rdfs:label xml:lang="en">comprisesEvents</rdfs:label>
         <rdfs:domain rdf:resource="#Event"/>
         <rdfs:range rdf:resource="#Event"/>
     </owl:ObjectProperty>
     
 	<!-- #Impact -->
-    <owl:Class rdf:about="#Impact">
+    <owl:Class rdf:about="http://w3id.org/impactont#Impact">
         <rdfs:subClassOf rdf:resource="#Event"/>
 		<rdfs:label >Impact</rdfs:label>
         <skos:definition>An event with an identifiable provenance.</skos:definition>
     </owl:Class>
 	
-	<owl:ObjectProperty rdf:about="#hasStateA">
+	<owl:ObjectProperty rdf:about="http://w3id.org/impactont#hasStateA">
 		<rdfs:label xml:lang="en">hasStateA</rdfs:label>
 		<rdfs:domain rdf:resource="#Event"/>
         <rdfs:range rdf:resource="#State"/>
     </owl:ObjectProperty>	
 	
-	<owl:ObjectProperty rdf:about="#hasStateB">
+	<owl:ObjectProperty rdf:about="http://w3id.org/impactont#hasStateB">
 		<rdfs:label xml:lang="en">hasStateB</rdfs:label>
 		<rdfs:domain rdf:resource="#Event"/>
         <rdfs:range rdf:resource="#State"/>
     </owl:ObjectProperty>	
 	
     <!-- #hasProvenance -->
-    <owl:ObjectProperty rdf:about="#hasProvenance">
+    <owl:ObjectProperty rdf:about="http://w3id.org/impactont#hasProvenance">
 		<rdfs:label xml:lang="en">hasProvenance</rdfs:label>
         <rdfs:domain rdf:resource="#State"/>
 		<rdfs:domain rdf:resource="#Impact"/>
@@ -119,14 +120,14 @@
     </owl:ObjectProperty>
 
     <!-- #Indicator -->
-    <owl:Class rdf:about="#Indicator">
+    <owl:Class rdf:about="http://w3id.org/impactont#Indicator">
         <rdfs:label>Indicator</rdfs:label>
         <skos:definition>A convention for indicating the state of a thing.</skos:definition>
 		<rdfs:comment>Must have a description and a unit of measure. Can optionally have a rationale.</rdfs:comment>
     </owl:Class>
 
     <!-- #Process -->
-    <owl:Class rdf:about="#Process">
+    <owl:Class rdf:about="http://w3id.org/impactont#Process">
         <rdfs:label>Process</rdfs:label>
         <skos:definition>A series of interrelated or interacting events.</skos:definition>
     </owl:Class>
