@@ -69,7 +69,7 @@
               <a href="#cls--Event">Event</a>,               <a href="#cls--Impact">Impact</a>,               <a href="#cls--Indicator">Indicator</a>,               <a href="#cls--Process">Process</a>,               <a href="#cls--State">State</a>,               <a href="#cls--TemporalLocation">TemporalLocation</a>,               <a href="#cls--Thing">Thing</a>          </div>
           <div class="key">Properties</div>
           <div>
-              <a href="#prop--comprisesEvents">comprisesEvents</a>,               <a href="#prop--hasModality">hasModality</a>,               <a href="#prop--hasProvenance">hasProvenance</a>,               <a href="#prop--hasState">hasState</a>,               <a href="#prop--hasStateA">hasStateA</a>,               <a href="#prop--hasStateB">hasStateB</a>,               <a href="#prop--hasTemporalLocation">hasTemporalLocation</a>,               <a href="#prop--impacts">impacts</a>,               <a href="#prop--isDefinedByIndicator">isDefinedByIndicator</a>          </div>
+              <a href="#prop--comprisesEvents">comprisesEvents</a>,               <a href="#prop--hasIndicatorValue">hasIndicatorValue</a>,               <a href="#prop--hasModality">hasModality</a>,               <a href="#prop--hasProvenance">hasProvenance</a>,               <a href="#prop--hasState">hasState</a>,               <a href="#prop--hasStateA">hasStateA</a>,               <a href="#prop--hasStateB">hasStateB</a>,               <a href="#prop--hasTemporalLocation">hasTemporalLocation</a>,               <a href="#prop--impacts">impacts</a>,               <a href="#prop--isDefinedByIndicator">isDefinedByIndicator</a>          </div>
       </div>
     </section>
 
@@ -150,7 +150,7 @@
             <div class="kv">
                 <div class="key">In Domain Of</div>
                 <div>
-                    <a href="#prop--hasTemporalLocation">:hasTemporalLocation</a>,                     <a href="#prop--hasModality">:hasModality</a>,                     <a href="#prop--isDefinedByIndicator">:isDefinedByIndicator</a>                </div>
+                    <a href="#prop--hasTemporalLocation">:hasTemporalLocation</a>,                     <a href="#prop--hasModality">:hasModality</a>,                     <a href="#prop--isDefinedByIndicator">:isDefinedByIndicator</a>,                     <a href="#prop--hasIndicatorValue">:hasIndicatorValue</a>                </div>
                 <div class="key">In Range Of</div>
                 <div>
                     <a href="#prop--hasState">:hasState</a>,                     <a href="#prop--impacts">:impacts</a>,                     <a href="#prop--hasStateA">:hasStateA</a>,                     <a href="#prop--hasStateB">:hasStateB</a>                </div>
@@ -206,6 +206,20 @@
                 <div class="key">Range</div>
                 <div>
                     <a href="#cls--Event">:Event</a>                </div>
+            </div>
+          </div>
+          <div class="item" id="prop--hasIndicatorValue">
+            <h3>hasIndicatorValue</h3>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#hasIndicatorValue</code></div>
+
+              <div class="section-title"><span class="badge">SKOS</span>Definition</div>
+                <div class="defblock">The time-dependent value assigned to the indicator that defines the state in question.</div>
+
+
+            <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--State">:State</a>                </div>
             </div>
           </div>
           <div class="item" id="prop--hasModality">
