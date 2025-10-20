@@ -29,6 +29,7 @@
 
 :hasModality a owl:DatatypeProperty ;
     rdfs:label "hasModality"@en ;
+    rdfs:comment "This property can only assume one of two values, namely 'counterfactual' and 'real' (as literals of type string)."@en ;
     rdfs:domain :State .
 
 :hasState a owl:ObjectProperty ;
