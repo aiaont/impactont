@@ -46,13 +46,13 @@
   <div class="wrap">
     <header>
       <h1>Impact Ontology</h1>
-<div class="iri">IRI: <code>https://w3id.org/impactont</code></div>      <div class="desc defblock"><span class="badge">Description</span> An ontology for describing how events impact things.</div>
+<div class="iri">IRI: <code>http://w3id.org/impactont</code></div>      <div class="desc defblock"><span class="badge">Description</span> An ontology for describing how events impact things.</div>
       <div class="prefixes">
         Prefixes:
-          <code>:: &lt;https://w3id.org/impactont#&gt;</code><br />
+          <code>:: &lt;http://w3id.org/impactont#&gt;</code><br />
           <code>dcmitype: &lt;http://purl.org/dc/dcmitype/&gt;</code><br />
           <code>dcterms: &lt;http://purl.org/dc/terms/&gt;</code><br />
-          <code>ns1: &lt;https://w3id.org/&gt;</code><br />
+          <code>ns1: &lt;http://w3id.org/&gt;</code><br />
           <code>owl: &lt;http://www.w3.org/2002/07/owl#&gt;</code><br />
           <code>prov: &lt;http://www.w3.org/ns/prov#&gt;</code><br />
           <code>rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</code><br />
@@ -78,7 +78,7 @@
         <h2>Classes</h2>
           <div class="item" id="cls--Event">
             <h3>Event</h3>
-            <div class="meta">IRI: <code>https://w3id.org/impactont#Event</code></div>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#Event</code></div>
 
               <div class="section-title"><span class="badge">SKOS</span>Definition</div>
                 <div class="defblock">A change in the state of an impactont:Thing.</div>
@@ -95,12 +95,12 @@
                     <a href="#prop--impacts">:impacts</a>,                     <a href="#prop--comprisesEvents">:comprisesEvents</a>,                     <a href="#prop--hasStateA">:hasStateA</a>,                     <a href="#prop--hasStateB">:hasStateB</a>                </div>
                 <div class="key">In Range Of</div>
                 <div>
-                    <a href="#prop--comprisesEvents">:comprisesEvents</a>,                     <a href="#prop--hasProvenance">:hasProvenance</a>                </div>
+                    <a href="#prop--comprisesEvents">:comprisesEvents</a>                </div>
             </div>
           </div>
           <div class="item" id="cls--Impact">
             <h3>Impact</h3>
-            <div class="meta">IRI: <code>https://w3id.org/impactont#Impact</code></div>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#Impact</code></div>
 
               <div class="section-title"><span class="badge">SKOS</span>Definition</div>
                 <div class="defblock">An event with an identifiable provenance.</div>
@@ -110,14 +110,11 @@
                 <div class="key">SubClass Of</div>
                 <div>
                     <a href="#cls--Event">:Event</a>                </div>
-                <div class="key">In Domain Of</div>
-                <div>
-                    <a href="#prop--hasProvenance">:hasProvenance</a>                </div>
             </div>
           </div>
           <div class="item" id="cls--Indicator">
             <h3>Indicator</h3>
-            <div class="meta">IRI: <code>https://w3id.org/impactont#Indicator</code></div>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#Indicator</code></div>
 
               <div class="section-title"><span class="badge">SKOS</span>Definition</div>
                 <div class="defblock">A convention for indicating the state of a thing.</div>
@@ -133,7 +130,7 @@
           </div>
           <div class="item" id="cls--Process">
             <h3>Process</h3>
-            <div class="meta">IRI: <code>https://w3id.org/impactont#Process</code></div>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#Process</code></div>
 
               <div class="section-title"><span class="badge">SKOS</span>Definition</div>
                 <div class="defblock">A series of interrelated or interacting events.</div>
@@ -144,7 +141,7 @@
           </div>
           <div class="item" id="cls--State">
             <h3>State</h3>
-            <div class="meta">IRI: <code>https://w3id.org/impactont#State</code></div>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#State</code></div>
 
               <div class="section-title"><span class="badge">SKOS</span>Definition</div>
                 <div class="defblock">The condition of a thing at a specific point in time, expressed in terms of one or more indicator-value pairs.</div>
@@ -153,7 +150,7 @@
             <div class="kv">
                 <div class="key">In Domain Of</div>
                 <div>
-                    <a href="#prop--hasTemporalLocation">:hasTemporalLocation</a>,                     <a href="#prop--hasModality">:hasModality</a>,                     <a href="#prop--isDefinedByIndicator">:isDefinedByIndicator</a>,                     <a href="#prop--hasProvenance">:hasProvenance</a>                </div>
+                    <a href="#prop--hasTemporalLocation">:hasTemporalLocation</a>,                     <a href="#prop--hasModality">:hasModality</a>,                     <a href="#prop--isDefinedByIndicator">:isDefinedByIndicator</a>                </div>
                 <div class="key">In Range Of</div>
                 <div>
                     <a href="#prop--hasState">:hasState</a>,                     <a href="#prop--impacts">:impacts</a>,                     <a href="#prop--hasStateA">:hasStateA</a>,                     <a href="#prop--hasStateB">:hasStateB</a>                </div>
@@ -161,7 +158,7 @@
           </div>
           <div class="item" id="cls--TemporalLocation">
             <h3>TemporalLocation</h3>
-            <div class="meta">IRI: <code>https://w3id.org/impactont#TemporalLocation</code></div>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#TemporalLocation</code></div>
 
               <div class="section-title"><span class="badge">SKOS</span>Definition</div>
                 <div class="defblock">The point or period in time at or during which a thing occurs, expressed in terms of the OWL-Time ontology.</div>
@@ -177,7 +174,7 @@
           </div>
           <div class="item" id="cls--Thing">
             <h3>Thing</h3>
-            <div class="meta">IRI: <code>https://w3id.org/impactont#Thing</code></div>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#Thing</code></div>
 
 
               <div class="section-title">Comments</div>
@@ -198,7 +195,7 @@
         <h2>Properties</h2>
           <div class="item" id="prop--comprisesEvents">
             <h3>comprisesEvents</h3>
-            <div class="meta">IRI: <code>https://w3id.org/impactont#comprisesEvents</code></div>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#comprisesEvents</code></div>
 
 
 
@@ -213,7 +210,7 @@
           </div>
           <div class="item" id="prop--hasModality">
             <h3>hasModality</h3>
-            <div class="meta">IRI: <code>https://w3id.org/impactont#hasModality</code></div>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#hasModality</code></div>
 
 
 
@@ -225,22 +222,18 @@
           </div>
           <div class="item" id="prop--hasProvenance">
             <h3>hasProvenance</h3>
-            <div class="meta">IRI: <code>https://w3id.org/impactont#hasProvenance</code></div>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#hasProvenance</code></div>
 
 
+              <div class="section-title">Comments</div>
+                <div class="comment">This property is used on the State and Impact classes. The range should always be an Event. This is enforced by owl:Restriction (see the definitions of the State and Impact classes.)</div>
 
             <div class="kv">
-                <div class="key">Domain</div>
-                <div>
-                    <a href="#cls--State">:State</a>,                     <a href="#cls--Impact">:Impact</a>                </div>
-                <div class="key">Range</div>
-                <div>
-                    <a href="#cls--Event">:Event</a>                </div>
             </div>
           </div>
           <div class="item" id="prop--hasState">
             <h3>hasState</h3>
-            <div class="meta">IRI: <code>https://w3id.org/impactont#hasState</code></div>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#hasState</code></div>
 
 
 
@@ -258,7 +251,7 @@
           </div>
           <div class="item" id="prop--hasStateA">
             <h3>hasStateA</h3>
-            <div class="meta">IRI: <code>https://w3id.org/impactont#hasStateA</code></div>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#hasStateA</code></div>
 
 
 
@@ -273,7 +266,7 @@
           </div>
           <div class="item" id="prop--hasStateB">
             <h3>hasStateB</h3>
-            <div class="meta">IRI: <code>https://w3id.org/impactont#hasStateB</code></div>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#hasStateB</code></div>
 
 
 
@@ -288,7 +281,7 @@
           </div>
           <div class="item" id="prop--hasTemporalLocation">
             <h3>hasTemporalLocation</h3>
-            <div class="meta">IRI: <code>https://w3id.org/impactont#hasTemporalLocation</code></div>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#hasTemporalLocation</code></div>
 
 
 
@@ -303,7 +296,7 @@
           </div>
           <div class="item" id="prop--impacts">
             <h3>impacts</h3>
-            <div class="meta">IRI: <code>https://w3id.org/impactont#impacts</code></div>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#impacts</code></div>
 
 
 
@@ -321,7 +314,7 @@
           </div>
           <div class="item" id="prop--isDefinedByIndicator">
             <h3>isDefinedByIndicator</h3>
-            <div class="meta">IRI: <code>https://w3id.org/impactont#isDefinedByIndicator</code></div>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#isDefinedByIndicator</code></div>
 
 
 
