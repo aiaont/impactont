@@ -138,6 +138,12 @@
         <skos:definition>A convention for indicating the state of a thing.</skos:definition>
 		<rdfs:comment>Must have a description and a unit of measure. Can optionally have a rationale.</rdfs:comment>
     </owl:Class>
+	
+    <owl:DatatypeProperty rdf:about="http://w3id.org/impactont#hasIndicatorValue">
+		<rdfs:label xml:lang="en">hasIndicatorValue</rdfs:label>
+		<skos:definition>The time-dependent value assigned to the indicator that defines the state in question.</skos:definition>
+		<rdfs:domain rdf:resource="#State"/>
+    </owl:DatatypeProperty>	
 
     <!-- #Process -->
     <owl:Class rdf:about="http://w3id.org/impactont#Process">
