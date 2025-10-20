@@ -58,6 +58,7 @@
     <owl:DatatypeProperty rdf:about="http://w3id.org/impactont#hasModality">
 		<rdfs:label xml:lang="en">hasModality</rdfs:label>
         <rdfs:domain rdf:resource="#State"/>
+		<rdfs:comment xml:lang="en">This property can only assume one of two values, namely 'counterfactual' and 'real' (as literals of type string).</rdfs:comment>
 		<!--
 		<rdfs:range>
 			<rdfs:Datatype>
