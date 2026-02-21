@@ -78,6 +78,14 @@
 		<rdfs:range rdf:resource="#Indicator"/>
 	</owl:ObjectProperty>
     
+	
+	<owl:ObjectProperty rdf:about="http://w3id.org/aiao#comprisesState">
+		<rdfs:label xml:lang="en">comprisesState</rdfs:label>
+		<rdfs:domain rdf:resource="#State"/>
+		<rdfs:range rdf:resource="#State"/>
+	</owl:ObjectProperty>   	
+	
+	
     <!-- #impacts -->
     <owl:ObjectProperty rdf:about="http://w3id.org/impactont#impacts">
 		<rdfs:label xml:lang="en">impacts</rdfs:label>
