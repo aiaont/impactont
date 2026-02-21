@@ -147,11 +147,18 @@
 		<rdfs:comment>Must have a description and a unit of measure. Can optionally have a rationale.</rdfs:comment>
     </owl:Class>
 	
-    <owl:DatatypeProperty rdf:about="http://w3id.org/impactont#hasIndicatorValue">
+    <owl:Class rdf:about="http://w3id.org/impactont#IndicatorValue">
+        <rdfs:label>IndicatorValue</rdfs:label>
+        <skos:definition>The time-dependent value assigned to the indicator that defines the state in question.</skos:definition>
+		<rdfs:comment>Must have an rdf:value. Can optionally have a dcterms:source.</rdfs:comment>
+    </owl:Class>	
+	
+    <owl:ObjectProperty rdf:about="http://w3id.org/impactont#hasIndicatorValue">
 		<rdfs:label xml:lang="en">hasIndicatorValue</rdfs:label>
-		<skos:definition>The time-dependent value assigned to the indicator that defines the state in question.</skos:definition>
 		<rdfs:domain rdf:resource="#State"/>
-    </owl:DatatypeProperty>	
+		<rdfs:range rdf:resource="#IndicatorValue">
+		<rdfs:comment>Assigns a time-dependent value to an indicator in the context of a state.</rdfs:comment>
+    </owl:ObjectProperty>	
 
     <!-- #Process -->
     <owl:Class rdf:about="http://w3id.org/impactont#Process">
