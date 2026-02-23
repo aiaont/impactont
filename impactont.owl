@@ -35,6 +35,12 @@
 		<skos:definition>The condition of a thing at a specific point in time, expressed in terms of one or more indicator-value pairs.</skos:definition>  
 		<rdfs:subClassOf>
 			<owl:Restriction>
+				<owl:onProperty rdf:resource="http://w3id.org/impactont#hasTemporalLocation"/>
+				<owl:allValuesFrom rdf:resource="http://w3id.org/impactont#TemporalLocation"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>				
+		<rdfs:subClassOf>
+			<owl:Restriction>
 				<owl:onProperty rdf:resource="http://w3id.org/impactont#hasProvenance"/>
 				<owl:allValuesFrom rdf:resource="http://w3id.org/impactont#Event"/>
 			</owl:Restriction>
@@ -43,7 +49,6 @@
 
 	<owl:ObjectProperty rdf:about="http://w3id.org/impactont#hasTemporalLocation">
 		<rdfs:label xml:lang="en">hasTemporalLocation</rdfs:label>
-		<rdfs:domain rdf:resource="#State"/>
 		<rdfs:range rdf:resource="#TemporalLocation"/>
 	</owl:ObjectProperty>
 
@@ -100,6 +105,12 @@
         <owl:equivalentClass rdf:resource="http://purl.org/dc/dcmitype/Event"/>
         <owl:equivalentClass rdf:resource="http://www.w3.org/ns/prov#InstantaneousEvent"/>
         <skos:definition>A change in the state of an impactont:Thing.</skos:definition>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="http://w3id.org/impactont#hasTemporalLocation"/>
+				<owl:allValuesFrom rdf:resource="http://w3id.org/impactont#TemporalLocation"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>			
 		<rdfs:comment>An Event may comprise other Events.</rdfs:comment>	
     </owl:Class>
 
