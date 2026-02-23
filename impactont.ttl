@@ -6,6 +6,11 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
+<http://w3id.org/aiao#comprisesState> a owl:ObjectProperty ;
+    rdfs:label "comprisesState"@en ;
+    rdfs:domain :State ;
+    rdfs:range :State .
+
 <http://w3id.org/impactont> a owl:Ontology ;
     dcterms:description "An ontology for describing how events impact things."@en ;
     dcterms:title "Impact Ontology"@en .
@@ -13,8 +18,8 @@
 :Impact a owl:Class ;
     rdfs:label "Impact" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom :Event ;
-            owl:onProperty :hasProvenance ],
+            owl:onProperty :hasProvenance ;
+            owl:someValuesFrom :Event ],
         :Event ;
     skos:definition "An event with an identifiable provenance." .
 
@@ -27,10 +32,11 @@
     rdfs:domain :Event ;
     rdfs:range :Event .
 
-:hasIndicatorValue a owl:DatatypeProperty ;
+:hasIndicatorValue a owl:ObjectProperty ;
     rdfs:label "hasIndicatorValue"@en ;
+    rdfs:comment "Assigns a time-dependent value to an indicator in the context of a state." ;
     rdfs:domain :State ;
-    skos:definition "The time-dependent value assigned to the indicator that defines the state in question." .
+    rdfs:range :IndicatorValue .
 
 :hasModality a owl:DatatypeProperty ;
     rdfs:label "hasModality"@en ;
@@ -75,6 +81,11 @@
     rdfs:comment "Must have a description and a unit of measure. Can optionally have a rationale." ;
     skos:definition "A convention for indicating the state of a thing." .
 
+:IndicatorValue a owl:Class ;
+    rdfs:label "IndicatorValue" ;
+    rdfs:comment "Must have an rdf:value. Can optionally have a dcterms:source." ;
+    skos:definition "The time-dependent value assigned to the indicator that defines the state in question." .
+
 :TemporalLocation a owl:Class ;
     rdfs:label "TemporalLocation"@en ;
     rdfs:comment "A point in time is a single time:Instant, while a period in time is defined by two distinct time:Instants (typically using the time:ProperInterval class)."@en ;
@@ -87,7 +98,8 @@
 
 :hasProvenance a owl:ObjectProperty ;
     rdfs:label "hasProvenance"@en ;
-    rdfs:comment "This property is used on the State and Impact classes. The range should always be an Event. This is enforced by owl:Restriction (see the definitions of the State and Impact classes.)" .
+    rdfs:comment "This property is used on the State and Impact classes. The range should always be an Event." ;
+    rdfs:range :Event .
 
 :Event a owl:Class ;
     rdfs:label "Event"@en ;
