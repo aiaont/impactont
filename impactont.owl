@@ -157,7 +157,7 @@
     <owl:ObjectProperty rdf:about="http://w3id.org/impactont#hasIndicatorValue">
 		<rdfs:label xml:lang="en">hasIndicatorValue</rdfs:label>
 		<rdfs:domain rdf:resource="#State"/>
-		<rdfs:range rdf:resource="#IndicatorValue">
+		<rdfs:range rdf:resource="#IndicatorValue"/>
 		<rdfs:comment>Assigns a time-dependent value to an indicator in the context of a state.</rdfs:comment>
     </owl:ObjectProperty>	
 
