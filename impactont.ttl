@@ -59,11 +59,6 @@
     rdfs:domain :Event ;
     rdfs:range :State .
 
-:hasTemporalLocation a owl:ObjectProperty ;
-    rdfs:label "hasTemporalLocation"@en ;
-    rdfs:domain :State ;
-    rdfs:range :TemporalLocation .
-
 :impacts a owl:ObjectProperty ;
     rdfs:label "impacts"@en ;
     rdfs:domain :Event ;
@@ -86,11 +81,6 @@
     rdfs:comment "Must have an rdf:value. Can optionally have a dcterms:source." ;
     skos:definition "The time-dependent value assigned to the indicator that defines the state in question." .
 
-:TemporalLocation a owl:Class ;
-    rdfs:label "TemporalLocation"@en ;
-    rdfs:comment "A point in time is a single time:Instant, while a period in time is defined by two distinct time:Instants (typically using the time:ProperInterval class)."@en ;
-    skos:definition "The point or period in time at or during which a thing occurs, expressed in terms of the OWL-Time ontology." .
-
 :Thing a owl:Class ;
     rdfs:label "Thing"@en ;
     rdfs:comment "Thing extends owl:Thing with the property of 'hasState'." ;
@@ -101,9 +91,21 @@
     rdfs:comment "This property is used on the State and Impact classes. The range should always be an Event." ;
     rdfs:range :Event .
 
+:hasTemporalLocation a owl:ObjectProperty ;
+    rdfs:label "hasTemporalLocation"@en ;
+    rdfs:range :TemporalLocation .
+
+:TemporalLocation a owl:Class ;
+    rdfs:label "TemporalLocation"@en ;
+    rdfs:comment "A point in time is a single time:Instant, while a period in time is defined by two distinct time:Instants (typically using the time:ProperInterval class)."@en ;
+    skos:definition "The point or period in time at or during which a thing occurs, expressed in terms of the OWL-Time ontology." .
+
 :Event a owl:Class ;
     rdfs:label "Event"@en ;
     rdfs:comment "An Event may comprise other Events." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom :TemporalLocation ;
+            owl:onProperty :hasTemporalLocation ] ;
     owl:equivalentClass dcmitype:Event,
         prov:InstantaneousEvent ;
     skos:definition "A change in the state of an impactont:Thing." .
@@ -111,6 +113,9 @@
 :State a owl:Class ;
     rdfs:label "State"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom :TemporalLocation ;
+            owl:onProperty :hasTemporalLocation ],
+        [ a owl:Restriction ;
             owl:allValuesFrom :Event ;
             owl:onProperty :hasProvenance ] ;
     skos:definition "The condition of a thing at a specific point in time, expressed in terms of one or more indicator-value pairs." .
