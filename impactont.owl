@@ -35,6 +35,12 @@
 		<skos:definition>The condition of a thing at a specific point in time, expressed in terms of one or more indicator-value pairs.</skos:definition>  
 		<rdfs:subClassOf>
 			<owl:Restriction>
+				<owl:onProperty rdf:resource="http://w3id.org/impactont#hasTemporalLocation"/>
+				<owl:allValuesFrom rdf:resource="http://w3id.org/impactont#TemporalLocation"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>				
+		<rdfs:subClassOf>
+			<owl:Restriction>
 				<owl:onProperty rdf:resource="http://w3id.org/impactont#hasProvenance"/>
 				<owl:allValuesFrom rdf:resource="http://w3id.org/impactont#Event"/>
 			</owl:Restriction>
@@ -43,7 +49,6 @@
 
 	<owl:ObjectProperty rdf:about="http://w3id.org/impactont#hasTemporalLocation">
 		<rdfs:label xml:lang="en">hasTemporalLocation</rdfs:label>
-		<rdfs:domain rdf:resource="#State"/>
 		<rdfs:range rdf:resource="#TemporalLocation"/>
 	</owl:ObjectProperty>
 
@@ -78,6 +83,14 @@
 		<rdfs:range rdf:resource="#Indicator"/>
 	</owl:ObjectProperty>
     
+	
+	<owl:ObjectProperty rdf:about="http://w3id.org/aiao#comprisesState">
+		<rdfs:label xml:lang="en">comprisesState</rdfs:label>
+		<rdfs:domain rdf:resource="#State"/>
+		<rdfs:range rdf:resource="#State"/>
+	</owl:ObjectProperty>   	
+	
+	
     <!-- #impacts -->
     <owl:ObjectProperty rdf:about="http://w3id.org/impactont#impacts">
 		<rdfs:label xml:lang="en">impacts</rdfs:label>
@@ -92,6 +105,12 @@
         <owl:equivalentClass rdf:resource="http://purl.org/dc/dcmitype/Event"/>
         <owl:equivalentClass rdf:resource="http://www.w3.org/ns/prov#InstantaneousEvent"/>
         <skos:definition>A change in the state of an impactont:Thing.</skos:definition>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="http://w3id.org/impactont#hasTemporalLocation"/>
+				<owl:allValuesFrom rdf:resource="http://w3id.org/impactont#TemporalLocation"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>			
 		<rdfs:comment>An Event may comprise other Events.</rdfs:comment>	
     </owl:Class>
 
@@ -107,10 +126,10 @@
 		<rdfs:subClassOf>
 			<owl:Restriction>
 				<owl:onProperty rdf:resource="http://w3id.org/impactont#hasProvenance"/>
-				<owl:allValuesFrom rdf:resource="http://w3id.org/impactont#Event"/>
+				<owl:someValuesFrom rdf:resource="http://w3id.org/impactont#Event"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>			
-		<rdfs:label >Impact</rdfs:label>
+		<rdfs:label>Impact</rdfs:label>
         <skos:definition>An event with an identifiable provenance.</skos:definition>
     </owl:Class>
 	
@@ -129,7 +148,8 @@
     <!-- #hasProvenance -->
     <owl:ObjectProperty rdf:about="http://w3id.org/impactont#hasProvenance">
 		<rdfs:label xml:lang="en">hasProvenance</rdfs:label>
-		<rdfs:comment>This property is used on the State and Impact classes. The range should always be an Event. This is enforced by owl:Restriction (see the definitions of the State and Impact classes.)</rdfs:comment>	
+        <rdfs:range rdf:resource="#Event"/>
+		<rdfs:comment>This property is used on the State and Impact classes. The range should always be an Event.</rdfs:comment>	
     </owl:ObjectProperty>
 
     <!-- #Indicator -->
@@ -139,11 +159,18 @@
 		<rdfs:comment>Must have a description and a unit of measure. Can optionally have a rationale.</rdfs:comment>
     </owl:Class>
 	
-    <owl:DatatypeProperty rdf:about="http://w3id.org/impactont#hasIndicatorValue">
+    <owl:Class rdf:about="http://w3id.org/impactont#IndicatorValue">
+        <rdfs:label>IndicatorValue</rdfs:label>
+        <skos:definition>The time-dependent value assigned to the indicator that defines the state in question.</skos:definition>
+		<rdfs:comment>Must have an rdf:value. Can optionally have a dcterms:source.</rdfs:comment>
+    </owl:Class>	
+	
+    <owl:ObjectProperty rdf:about="http://w3id.org/impactont#hasIndicatorValue">
 		<rdfs:label xml:lang="en">hasIndicatorValue</rdfs:label>
-		<skos:definition>The time-dependent value assigned to the indicator that defines the state in question.</skos:definition>
 		<rdfs:domain rdf:resource="#State"/>
-    </owl:DatatypeProperty>	
+		<rdfs:range rdf:resource="#IndicatorValue"/>
+		<rdfs:comment>Assigns a time-dependent value to an indicator in the context of a state.</rdfs:comment>
+    </owl:ObjectProperty>	
 
     <!-- #Process -->
     <owl:Class rdf:about="http://w3id.org/impactont#Process">
