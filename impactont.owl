@@ -127,11 +127,27 @@
 		</rdfs:subClassOf>			
 		<rdfs:comment>An Event may comprise other Events.</rdfs:comment>	
     </owl:Class>
+	
+    <owl:ObjectProperty rdf:about="http://w3id.org/impactont#comprisesEvent">
+		<rdfs:label xml:lang="en">comprisesEvent</rdfs:label>
+		<rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#Process"/>
+					<rdf:Description rdf:about="#Event"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+        <rdfs:range rdf:resource="#Event"/>	
+    </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="http://w3id.org/impactont#comprisesEvents">
 		<rdfs:label xml:lang="en">comprisesEvents</rdfs:label>
         <rdfs:domain rdf:resource="#Event"/>
         <rdfs:range rdf:resource="#Event"/>
+		<rdfs:comment>Deprecated. Use comprisesEvent instead.</rdfs:comment>
+		<owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+		<dcterms:isReplacedBy rdf:resource="http://w3id.org/impactont#comprisesEvent"/>		
     </owl:ObjectProperty>
     
 	<!-- #Impact -->
