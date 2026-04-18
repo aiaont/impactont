@@ -60,6 +60,19 @@
         <rdfs:comment xml:lang="en">A point in time is a single time:Instant, while a period in time is defined by two distinct time:Instants (typically using the time:ProperInterval class).</rdfs:comment>
     </owl:Class>
 
+	<owl:ObjectProperty rdf:about="http://w3id.org/impactont#hasSpatialLocation">
+		<rdfs:label xml:lang="en">hasSpatialLocation</rdfs:label>
+		<rdfs:domain rdf:resource="#Thing"/>
+		<rdfs:range rdf:resource="#SpatialLocation"/>
+	</owl:ObjectProperty>
+
+   <!-- #SpatialLocation -->
+    <owl:Class rdf:about="http://w3id.org/impactont#SpatialLocation">
+		<rdfs:label xml:lang="en">SpatialLocation</rdfs:label>   
+		<skos:definition>The point or region in space at or within which a thing occurs.</skos:definition>
+        <rdfs:comment xml:lang="en">This should be described using a spatial ontology, such as the GeoSPARQL Ontology (https://www.ogc.org/standards/geosparql/).</rdfs:comment>
+    </owl:Class>
+
     <!-- #hasModality -->
     <owl:DatatypeProperty rdf:about="http://w3id.org/impactont#hasModality">
 		<rdfs:label xml:lang="en">hasModality</rdfs:label>
