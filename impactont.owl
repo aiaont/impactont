@@ -49,6 +49,7 @@
 
 	<owl:ObjectProperty rdf:about="http://w3id.org/impactont#hasTemporalLocation">
 		<rdfs:label xml:lang="en">hasTemporalLocation</rdfs:label>
+		<rdfs:domain rdf:resource="#Thing"/>
 		<rdfs:range rdf:resource="#TemporalLocation"/>
 	</owl:ObjectProperty>
 
