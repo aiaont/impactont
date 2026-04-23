@@ -67,16 +67,25 @@
       <div class="kv">
           <div class="key">Classes</div>
           <div>
-              <a href="#cls--Event">Event</a>,               <a href="#cls--Impact">Impact</a>,               <a href="#cls--Indicator">Indicator</a>,               <a href="#cls--IndicatorValue">IndicatorValue</a>,               <a href="#cls--Process">Process</a>,               <a href="#cls--State">State</a>,               <a href="#cls--TemporalLocation">TemporalLocation</a>,               <a href="#cls--Thing">Thing</a>          </div>
+              <a href="#cls-<N5160d7f6f5de4c35a194d0562caa3fee>"><N5160d7f6f5de4c35a194d0562caa3fee></a>,               <a href="#cls--Event">Event</a>,               <a href="#cls--Impact">Impact</a>,               <a href="#cls--Indicator">Indicator</a>,               <a href="#cls--IndicatorValue">IndicatorValue</a>,               <a href="#cls--Process">Process</a>,               <a href="#cls--SpatialLocation">SpatialLocation</a>,               <a href="#cls--State">State</a>,               <a href="#cls--TemporalLocation">TemporalLocation</a>,               <a href="#cls--Thing">Thing</a>          </div>
           <div class="key">Properties</div>
           <div>
-              <a href="#prop--comprisesEvents">comprisesEvents</a>,               <a href="#prop-<http---w3id.org-aiao-comprisesState>">comprisesState</a>,               <a href="#prop--hasIndicatorValue">hasIndicatorValue</a>,               <a href="#prop--hasModality">hasModality</a>,               <a href="#prop--hasProvenance">hasProvenance</a>,               <a href="#prop--hasState">hasState</a>,               <a href="#prop--hasStateA">hasStateA</a>,               <a href="#prop--hasStateB">hasStateB</a>,               <a href="#prop--hasTemporalLocation">hasTemporalLocation</a>,               <a href="#prop--impacts">impacts</a>,               <a href="#prop--isDefinedByIndicator">isDefinedByIndicator</a>          </div>
+              <a href="#prop--comprisesEvent">comprisesEvent</a>,               <a href="#prop--comprisesEvents">comprisesEvents</a>,               <a href="#prop-<http---w3id.org-aiao-comprisesState>">comprisesState</a>,               <a href="#prop--hasIndicatorValue">hasIndicatorValue</a>,               <a href="#prop--hasModality">hasModality</a>,               <a href="#prop--hasProvenance">hasProvenance</a>,               <a href="#prop--hasSpatialLocation">hasSpatialLocation</a>,               <a href="#prop--hasState">hasState</a>,               <a href="#prop--hasStateA">hasStateA</a>,               <a href="#prop--hasStateB">hasStateB</a>,               <a href="#prop--hasTemporalLocation">hasTemporalLocation</a>,               <a href="#prop--impacts">impacts</a>,               <a href="#prop--isDefinedByIndicator">isDefinedByIndicator</a>          </div>
       </div>
     </section>
 
     <div class="grid">
       <section>
         <h2>Classes</h2>
+          <div class="item" id="cls-<N5160d7f6f5de4c35a194d0562caa3fee>">
+            <h3><N5160d7f6f5de4c35a194d0562caa3fee></h3>
+            <div class="meta">IRI: <code>N5160d7f6f5de4c35a194d0562caa3fee</code></div>
+
+
+
+            <div class="kv">
+            </div>
+          </div>
           <div class="item" id="cls--Event">
             <h3>Event</h3>
             <div class="meta">IRI: <code>http://w3id.org/impactont#Event</code></div>
@@ -96,7 +105,7 @@
                     <a href="#prop--impacts">:impacts</a>,                     <a href="#prop--comprisesEvents">:comprisesEvents</a>,                     <a href="#prop--hasStateA">:hasStateA</a>,                     <a href="#prop--hasStateB">:hasStateB</a>                </div>
                 <div class="key">In Range Of</div>
                 <div>
-                    <a href="#prop--comprisesEvents">:comprisesEvents</a>,                     <a href="#prop--hasProvenance">:hasProvenance</a>                </div>
+                    <a href="#prop--comprisesEvent">:comprisesEvent</a>,                     <a href="#prop--comprisesEvents">:comprisesEvents</a>,                     <a href="#prop--hasProvenance">:hasProvenance</a>                </div>
             </div>
           </div>
           <div class="item" id="cls--Impact">
@@ -156,6 +165,22 @@
             <div class="kv">
             </div>
           </div>
+          <div class="item" id="cls--SpatialLocation">
+            <h3>SpatialLocation</h3>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#SpatialLocation</code></div>
+
+              <div class="section-title"><span class="badge">SKOS</span>Definition</div>
+                <div class="defblock">The point or region in space at or within which a thing occurs.</div>
+
+              <div class="section-title">Comments</div>
+                <div class="comment">This should be described using a spatial ontology, such as the GeoSPARQL Ontology (https://www.ogc.org/standards/geosparql/).</div>
+
+            <div class="kv">
+                <div class="key">In Range Of</div>
+                <div>
+                    <a href="#prop--hasSpatialLocation">:hasSpatialLocation</a>                </div>
+            </div>
+          </div>
           <div class="item" id="cls--State">
             <h3>State</h3>
             <div class="meta">IRI: <code>http://w3id.org/impactont#State</code></div>
@@ -203,18 +228,32 @@
                     <a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a>                </div>
                 <div class="key">In Domain Of</div>
                 <div>
-                    <a href="#prop--hasState">:hasState</a>                </div>
+                    <a href="#prop--hasState">:hasState</a>,                     <a href="#prop--hasTemporalLocation">:hasTemporalLocation</a>,                     <a href="#prop--hasSpatialLocation">:hasSpatialLocation</a>                </div>
             </div>
           </div>
       </section>
 
       <section>
         <h2>Properties</h2>
+          <div class="item" id="prop--comprisesEvent">
+            <h3>comprisesEvent</h3>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#comprisesEvent</code></div>
+
+
+
+            <div class="kv">
+                <div class="key">Range</div>
+                <div>
+                    <a href="#cls--Event">:Event</a>                </div>
+            </div>
+          </div>
           <div class="item" id="prop--comprisesEvents">
             <h3>comprisesEvents</h3>
             <div class="meta">IRI: <code>http://w3id.org/impactont#comprisesEvents</code></div>
 
 
+              <div class="section-title">Comments</div>
+                <div class="comment">Deprecated. Use comprisesEvent instead.</div>
 
             <div class="kv">
                 <div class="key">Domain</div>
@@ -285,6 +324,21 @@
                     <a href="#cls--Event">:Event</a>                </div>
             </div>
           </div>
+          <div class="item" id="prop--hasSpatialLocation">
+            <h3>hasSpatialLocation</h3>
+            <div class="meta">IRI: <code>http://w3id.org/impactont#hasSpatialLocation</code></div>
+
+
+
+            <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--Thing">:Thing</a>                </div>
+                <div class="key">Range</div>
+                <div>
+                    <a href="#cls--SpatialLocation">:SpatialLocation</a>                </div>
+            </div>
+          </div>
           <div class="item" id="prop--hasState">
             <h3>hasState</h3>
             <div class="meta">IRI: <code>http://w3id.org/impactont#hasState</code></div>
@@ -340,6 +394,9 @@
 
 
             <div class="kv">
+                <div class="key">Domain</div>
+                <div>
+                    <a href="#cls--Thing">:Thing</a>                </div>
                 <div class="key">Range</div>
                 <div>
                     <a href="#cls--TemporalLocation">:TemporalLocation</a>                </div>
