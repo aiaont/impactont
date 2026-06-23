@@ -49,6 +49,7 @@
 
 	<owl:ObjectProperty rdf:about="http://w3id.org/impactont#hasTemporalLocation">
 		<rdfs:label xml:lang="en">hasTemporalLocation</rdfs:label>
+		<rdfs:domain rdf:resource="#Thing"/>
 		<rdfs:range rdf:resource="#TemporalLocation"/>
 	</owl:ObjectProperty>
 
@@ -57,6 +58,19 @@
 		<rdfs:label xml:lang="en">TemporalLocation</rdfs:label>   
 		<skos:definition>The point or period in time at or during which a thing occurs, expressed in terms of the OWL-Time ontology.</skos:definition>
         <rdfs:comment xml:lang="en">A point in time is a single time:Instant, while a period in time is defined by two distinct time:Instants (typically using the time:ProperInterval class).</rdfs:comment>
+    </owl:Class>
+
+	<owl:ObjectProperty rdf:about="http://w3id.org/impactont#hasSpatialLocation">
+		<rdfs:label xml:lang="en">hasSpatialLocation</rdfs:label>
+		<rdfs:domain rdf:resource="#Thing"/>
+		<rdfs:range rdf:resource="#SpatialLocation"/>
+	</owl:ObjectProperty>
+
+   <!-- #SpatialLocation -->
+    <owl:Class rdf:about="http://w3id.org/impactont#SpatialLocation">
+		<rdfs:label xml:lang="en">SpatialLocation</rdfs:label>   
+		<skos:definition>The point or region in space at or within which a thing occurs.</skos:definition>
+        <rdfs:comment xml:lang="en">This should be described using a spatial ontology, such as the GeoSPARQL Ontology (https://www.ogc.org/standards/geosparql/).</rdfs:comment>
     </owl:Class>
 
     <!-- #hasModality -->
@@ -119,11 +133,27 @@
 		</rdfs:subClassOf>			
 		<rdfs:comment>An Event may comprise other Events.</rdfs:comment>	
     </owl:Class>
+	
+    <owl:ObjectProperty rdf:about="http://w3id.org/impactont#comprisesEvent">
+		<rdfs:label xml:lang="en">comprisesEvent</rdfs:label>
+		<rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#Process"/>
+					<rdf:Description rdf:about="#Event"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+        <rdfs:range rdf:resource="#Event"/>	
+    </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="http://w3id.org/impactont#comprisesEvents">
-		<rdfs:label xml:lang="en">comprisesEvents</rdfs:label>
+        <rdfs:label xml:lang="en">comprisesEvents</rdfs:label>
         <rdfs:domain rdf:resource="#Event"/>
         <rdfs:range rdf:resource="#Event"/>
+        <rdfs:comment>Deprecated. Use comprisesEvent instead.</rdfs:comment>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+        <terms:isReplacedBy rdf:resource="http://w3id.org/impactont#comprisesEvent"/>		
     </owl:ObjectProperty>
     
 	<!-- #Impact -->

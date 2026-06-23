@@ -24,11 +24,27 @@
   {
     "@id": "http://w3id.org/impactont#isDefinedByIndicator",
     "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
+      "http://www.w3.org/2002/07/owl#Class"
     ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
+    "http://www.w3.org/2000/01/rdf-schema#label": [
       {
-        "@id": "http://w3id.org/impactont#State"
+        "@value": "Process"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "A series of interrelated or interacting events."
+      }
+    ]
+  },
+  {
+    "@id": "http://w3id.org/impactont#Thing",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Thing extends owl:Thing with the property of 'hasState'."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
@@ -37,7 +53,7 @@
         "@value": "isDefinedByIndicator"
       }
     ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
       {
         "@id": "http://w3id.org/impactont#Indicator"
       }
@@ -51,7 +67,7 @@
   {
     "@id": "http://w3id.org/impactont#hasState",
     "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
+      "http://www.w3.org/2002/07/owl#Class"
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
@@ -64,7 +80,7 @@
         "@value": "hasState"
       }
     ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
+    "http://www.w3.org/2004/02/skos/core#definition": [
       {
         "@id": "http://w3id.org/impactont#State"
       }
@@ -126,7 +142,7 @@
         "@value": "This property can only assume one of two values, namely 'counterfactual' and 'real' (as literals of type string)."
       }
     ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@id": "http://w3id.org/impactont#State"
       }
@@ -236,40 +252,52 @@
     ]
   },
   {
-    "@id": "http://w3id.org/impactont#Event",
+    "@id": "http://w3id.org/aiao#comprisesState",
     "@type": [
-      "http://www.w3.org/2002/07/owl#Class"
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
     ],
-    "http://www.w3.org/2000/01/rdf-schema#comment": [
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@value": "An Event may comprise other Events."
+        "@id": "http://w3id.org/impactont#State"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
         "@language": "en",
-        "@value": "Event"
+        "@value": "comprisesState"
       }
     ],
-    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+    "http://www.w3.org/2000/01/rdf-schema#range": [
       {
         "@id": "_:N34fb78e1f22b435a9f6a593441263382"
       },
       {
         "@id": "_:Nf4f8e89562bb468395b18aff0967517d"
       }
+    ]
+  },
+  {
+    "@id": "http://w3id.org/impactont#State",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
     ],
-    "http://www.w3.org/2002/07/owl#equivalentClass": [
+    "http://www.w3.org/2000/01/rdf-schema#label": [
       {
-        "@id": "http://purl.org/dc/dcmitype/Event"
+        "@language": "en",
+        "@value": "State"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "_:N8e9fd1e8f49d4f76bc495172175eef20"
       },
       {
-        "@id": "http://www.w3.org/ns/prov#InstantaneousEvent"
+        "@id": "_:Ncc3a2c803ca74dbfb6d167c59415ed18"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
-        "@value": "A change in the state of an impactont:Thing."
+        "@value": "The condition of a thing at a specific point in time, expressed in terms of one or more indicator-value pairs."
       }
     ]
   },
@@ -308,9 +336,9 @@
   {
     "@id": "http://w3id.org/impactont#impacts",
     "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
+      "http://www.w3.org/2002/07/owl#Restriction"
     ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
+    "http://www.w3.org/2002/07/owl#allValuesFrom": [
       {
         "@id": "http://w3id.org/impactont#Event"
       }
@@ -323,7 +351,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/impactont#State"
+        "@id": "http://w3id.org/impactont#hasProvenance"
       }
     ],
     "http://www.w3.org/2002/07/owl#inverseOf": [
@@ -398,23 +426,24 @@
     ]
   },
   {
-    "@id": "http://w3id.org/impactont#IndicatorValue",
+    "@id": "http://w3id.org/impactont#hasSpatialLocation",
     "@type": [
-      "http://www.w3.org/2002/07/owl#Class"
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
     ],
-    "http://www.w3.org/2000/01/rdf-schema#comment": [
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@value": "Must have an rdf:value. Can optionally have a dcterms:source."
+        "@id": "http://w3id.org/impactont#Thing"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
-        "@value": "IndicatorValue"
+        "@language": "en",
+        "@value": "hasSpatialLocation"
       }
     ],
-    "http://www.w3.org/2004/02/skos/core#definition": [
+    "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@value": "The time-dependent value assigned to the indicator that defines the state in question."
+        "@id": "http://w3id.org/impactont#SpatialLocation"
       }
     ]
   },
@@ -442,7 +471,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@id": "http://w3id.org/impactont#Event"
+        "@id": "http://w3id.org/impactont#Thing"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
@@ -458,11 +487,11 @@
     ]
   },
   {
-    "@id": "http://w3id.org/impactont#hasProvenance",
+    "@id": "http://w3id.org/impactont#comprisesEvent",
     "@type": [
       "http://www.w3.org/2002/07/owl#ObjectProperty"
     ],
-    "http://www.w3.org/2000/01/rdf-schema#comment": [
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
         "@value": "This property is used on the Event, State and Impact classes. The range should always be an Event."
       }
@@ -470,7 +499,7 @@
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
         "@language": "en",
-        "@value": "hasProvenance"
+        "@value": "comprisesEvent"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [

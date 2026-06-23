@@ -3,8 +3,10 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://w3id.org/aiao#comprisesState> a owl:ObjectProperty ;
     rdfs:label "comprisesState"@en ;
@@ -23,14 +25,13 @@
         :Event ;
     skos:definition "An event with an identifiable provenance." .
 
-:Process a owl:Class ;
-    rdfs:label "Process" ;
-    skos:definition "A series of interrelated or interacting events." .
-
 :comprisesEvents a owl:ObjectProperty ;
     rdfs:label "comprisesEvents"@en ;
+    dcterms:isReplacedBy :comprisesEvent ;
+    rdfs:comment "Deprecated. Use comprisesEvent instead." ;
     rdfs:domain :Event ;
-    rdfs:range :Event .
+    rdfs:range :Event ;
+    owl:deprecated true .
 
 :hasIndicatorValue a owl:ObjectProperty ;
     rdfs:label "hasIndicatorValue"@en ;
@@ -42,6 +43,11 @@
     rdfs:label "hasModality"@en ;
     rdfs:comment "This property can only assume one of two values, namely 'counterfactual' and 'real' (as literals of type string)."@en ;
     rdfs:domain :State .
+
+:hasSpatialLocation a owl:ObjectProperty ;
+    rdfs:label "hasSpatialLocation"@en ;
+    rdfs:domain :Thing ;
+    rdfs:range :SpatialLocation .
 
 :hasState a owl:ObjectProperty ;
     rdfs:label "hasState"@en ;
@@ -81,13 +87,24 @@
     rdfs:comment "Must have an rdf:value. Can optionally have a dcterms:source." ;
     skos:definition "The time-dependent value assigned to the indicator that defines the state in question." .
 
-:Thing a owl:Class ;
-    rdfs:label "Thing"@en ;
-    rdfs:comment "Thing extends owl:Thing with the property of 'hasState'." ;
-    rdfs:subClassOf owl:Thing .
+:Process a owl:Class ;
+    rdfs:label "Process" ;
+    skos:definition "A series of interrelated or interacting events." .
+
+:SpatialLocation a owl:Class ;
+    rdfs:label "SpatialLocation"@en ;
+    rdfs:comment "This should be described using a spatial ontology, such as the GeoSPARQL Ontology (https://www.ogc.org/standards/geosparql/)."@en ;
+    skos:definition "The point or region in space at or within which a thing occurs." .
+
+:comprisesEvent a owl:ObjectProperty ;
+    rdfs:label "comprisesEvent"@en ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( :Process :Event ) ] ;
+    rdfs:range :Event .
 
 :hasTemporalLocation a owl:ObjectProperty ;
     rdfs:label "hasTemporalLocation"@en ;
+    rdfs:domain :Thing ;
     rdfs:range :TemporalLocation .
 
 :TemporalLocation a owl:Class ;
@@ -109,6 +126,11 @@
             owl:allValuesFrom :TemporalLocation ;
             owl:onProperty :hasTemporalLocation ] ;
     skos:definition "The condition of a thing at a specific point in time, expressed in terms of one or more indicator-value pairs." .
+
+:Thing a owl:Class ;
+    rdfs:label "Thing"@en ;
+    rdfs:comment "Thing extends owl:Thing with the property of 'hasState'." ;
+    rdfs:subClassOf owl:Thing .
 
 :Event a owl:Class ;
     rdfs:label "Event"@en ;
