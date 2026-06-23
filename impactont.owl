@@ -125,6 +125,12 @@
 				<owl:allValuesFrom rdf:resource="http://w3id.org/impactont#TemporalLocation"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>			
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="http://w3id.org/impactont#hasProvenance"/>
+				<owl:someValuesFrom rdf:resource="http://w3id.org/impactont#Event"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>			
 		<rdfs:comment>An Event may comprise other Events.</rdfs:comment>	
     </owl:Class>
 	
@@ -179,7 +185,7 @@
     <owl:ObjectProperty rdf:about="http://w3id.org/impactont#hasProvenance">
 		<rdfs:label xml:lang="en">hasProvenance</rdfs:label>
         <rdfs:range rdf:resource="#Event"/>
-		<rdfs:comment>This property is used on the State and Impact classes. The range should always be an Event.</rdfs:comment>	
+		<rdfs:comment>This property is used on the Event, State and Impact classes. The range should always be an Event.</rdfs:comment>	
     </owl:ObjectProperty>
 
     <!-- #Indicator -->
